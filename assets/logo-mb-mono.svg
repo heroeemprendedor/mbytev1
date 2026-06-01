@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- mByte monogram "mB" — grid geométrico modular -->
+  <!-- "m" minúscula — izquierda -->
+  <rect x="56" y="140" width="44" height="232" rx="6" fill="#0A0A0A"/>
+  <rect x="120" y="220" width="44" height="152" rx="6" fill="#0A0A0A"/>
+  <rect x="184" y="260" width="44" height="112" rx="6" fill="#0A0A0A"/>
+  <!-- Arco superior de la "m" -->
+  <rect x="120" y="140" width="44" height="52" rx="6" fill="#0066FF"/>
+  <rect x="184" y="190" width="44" height="42" rx="6" fill="#0066FF"/>
+
+  <!-- "B" mayúscula — derecha -->
+  <rect x="276" y="72" width="44" height="368" rx="6" fill="#0A0A0A"/>
+  <rect x="340" y="72" width="116" height="52" rx="6" fill="none" stroke="#0A0A0A" stroke-width="22"/>
+  <rect x="340" y="196" width="116" height="52" rx="6" fill="none" stroke="#0A0A0A" stroke-width="22"/>
+  <!-- Rellenos de la B -->
+  <rect x="340" y="86" width="84" height="44" rx="4" fill="#0066FF"/>
+  <rect x="340" y="260" width="84" height="44" rx="4" fill="#0066FF"/>
+</svg>
