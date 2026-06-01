@@ -26,6 +26,7 @@ body{
 /* ── LOGO ── */
 .logo-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
 .logo-link svg{height:34px;width:auto}
+.logo-img{height:34px;width:auto;object-fit:contain}
 .logo-link span{font-weight:700;font-size:1.125rem;color:var(--black);letter-spacing:-.01em}
 
 /* ── HEADER ── */
