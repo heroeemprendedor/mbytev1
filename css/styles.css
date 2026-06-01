@@ -26,7 +26,7 @@ body{
 /* ── LOGO ── */
 .logo-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
 .logo-link svg{height:34px;width:auto}
-.logo-img{height:34px;width:auto;object-fit:contain}
+.logo-img{height:34px;width:auto;object-fit:contain;display:block}
 .logo-link span{font-weight:700;font-size:1.125rem;color:var(--black);letter-spacing:-.01em}
 
 /* ── HEADER ── */
@@ -64,7 +64,7 @@ body{
 .hero{text-align:center;padding:8rem 2rem 5rem}
 .hero .section-label{display:inline-block;border:1px solid var(--gray-2);padding:.375rem .875rem;border-radius:3px}
 .hero-logo{margin:2.5rem auto 3rem;display:flex;justify-content:center}
-.hero-logo svg{height:110px;width:auto}
+.hero-logo img{height:120px;width:auto;max-width:min(52vw,360px);object-fit:contain;display:block}
 .hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-.025em;margin-bottom:1.5rem}
 .hero h1 em{font-style:normal;color:var(--blue)}
 .hero p{max-width:640px;margin:0 auto 2.5rem;font-size:1.125rem;color:var(--gray-3);line-height:1.65}
