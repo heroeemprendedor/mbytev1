@@ -114,6 +114,7 @@ body{
 .card-grid{display:grid;gap:1.25rem}
 .card-grid-3{grid-template-columns:repeat(3,1fr)}
 .card-grid-4{grid-template-columns:repeat(4,1fr)}
+.card-grid-5{grid-template-columns:repeat(5,1fr)}
 .sys-card{
   border:1.5px solid var(--gray-2);border-radius:8px;
   padding:1.75rem;transition:border-color .15s, transform .15s, box-shadow .15s;
@@ -245,7 +246,7 @@ body{
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  .card-grid-3,.card-grid-4{grid-template-columns:repeat(2,1fr)}
+  .card-grid-3,.card-grid-4,.card-grid-5{grid-template-columns:repeat(2,1fr)}
   .method-row{grid-template-columns:1fr}
   .method-step{border-left:none;border-top:1px solid var(--gray-2);padding:2rem 0}
   .method-step:first-child{border-top:none}
@@ -260,7 +261,7 @@ body{
 @media(max-width:560px){
   .site-header{height:102px;padding:0 1rem}
   .site-header .logo-img--tagline{width:220px;max-width:calc(100vw - 2rem)}
-  .card-grid-3,.card-grid-4{grid-template-columns:1fr}
+  .card-grid-3,.card-grid-4,.card-grid-5{grid-template-columns:1fr}
   .metrics{grid-template-columns:1fr}
   .feature-row{grid-template-columns:1fr}
   .area-cluster{padding:1.35rem}
