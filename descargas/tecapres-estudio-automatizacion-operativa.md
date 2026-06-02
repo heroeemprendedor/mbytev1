@@ -47,7 +47,7 @@ Durante la sesion se revisaran los siguientes puntos:
 - Entrada de pedidos: email, telefono, web, distribuidores, comerciales u otros canales.
 - Clasificacion del pedido: producto estandar, producto especial, consulta tecnica, repuesto, incidencia, soporte o seguimiento.
 - Flujo administrativo interno: registro, validacion, presupuesto, confirmacion, documentacion, preparacion, seguimiento y cierre.
-- Sistemas actuales: ERP, CRM, email, hojas de calculo, carpetas compartidas, software de produccion, documentacion tecnica, herramientas de soporte o cualquier otro sistema activo.
+- Sistemas actuales: ERP, CRM, email, hojas de calculo, hojas de precio, carpetas compartidas, software de produccion, documentacion tecnica, herramientas de soporte o cualquier otro sistema activo.
 - Comunicacion con cliente: confirmaciones, dudas, plazos, seguimiento, incidencias, documentacion y postventa.
 - Coordinacion interna: administracion, comercial, oficina tecnica, produccion, almacen, direccion y soporte.
 - Documentacion: catalogos, referencias, CAD, certificados, fichas tecnicas, historicos y archivos internos.
@@ -156,11 +156,11 @@ Puede incluir:
 
 La implantacion posterior no se presupuesta como una bolsa generica de horas. Se presupuestara por bloques de automatizacion.
 
-### Bloque pequeno
+### Bloque simple
 
 Automatizaciones simples, con pocas reglas y baja integracion.
 
-Estimacion orientativa: 750-1.500 EUR por automatizacion.
+Estimacion orientativa: 750-1.500 EUR por grupo de automatizacion.
 
 Ejemplos:
 
@@ -169,15 +169,6 @@ Ejemplos:
 - clasificacion basica de mensajes;
 - recordatorios;
 - preparacion de borradores.
-
-### Bloque medio
-
-Automatizaciones con varias reglas, coordinacion entre personas o conexion con sistemas existentes.
-
-Estimacion orientativa: 2.500-5.000 EUR por automatizacion o bloque funcional.
-
-Ejemplos:
-
 - seguimiento de pedidos;
 - control de estados;
 - circuitos de validacion;
@@ -188,7 +179,7 @@ Ejemplos:
 
 Automatizaciones con integraciones complejas, datos sensibles, varias areas implicadas o impacto directo en procesos criticos.
 
-Estimacion orientativa: 6.000-12.000 EUR por automatizacion avanzada o bloque de sistema.
+Estimacion orientativa: 1.500-3.500 EUR por bloque de sistema.
 
 Ejemplos:
 
@@ -202,15 +193,12 @@ Los importes definitivos se propondran tras el estudio inicial, cuando se conozc
 
 ### Escenarios orientativos de implantacion
 
-Como referencia inicial, antes de realizar el estudio, mByte propone los siguientes rangos:
+Como referencia inicial, antes de realizar el estudio, mByte propone los siguientes escenarios:
 
-| Escenario | Alcance orientativo | Estimacion |
+| Escenario | Alcance orientativo | Criterio economico |
 | --- | --- | --- |
-| Implantacion inicial | 2-3 automatizaciones pequenas o una automatizacion media, centradas en pedidos, avisos internos o clasificacion de solicitudes | 3.000-5.000 EUR |
-| Implantacion operativa | 3-5 automatizaciones combinadas, con seguimiento de pedidos, estados, avisos, borradores de respuesta y reporting basico | 6.000-12.000 EUR |
-| Implantacion avanzada | Flujo administrativo mas completo, integraciones con sistemas existentes, trazabilidad y reporting directivo | 12.000-25.000 EUR |
-
-Estos rangos no sustituyen al presupuesto posterior. Sirven para que Tecapres tenga una referencia economica desde el inicio y pueda decidir el ritmo de implantacion.
+| Implantacion inicial | Automatizaciones simples o un primer grupo funcional centrado en pedidos, avisos internos o clasificacion de solicitudes. | Se presupuestara segun los bloques simples o avanzados definidos anteriormente. |
+| Implantacion operativa | Flujo administrativo mas completo, integraciones con sistemas existentes, trazabilidad y reporting directivo. | Se presupuestara tras el estudio inicial, segun numero, dificultad e integraciones necesarias. |
 
 ---
 
@@ -220,7 +208,7 @@ Una vez implantadas las automatizaciones, mByte recomienda contratar un mantenim
 
 ### Opcion Base
 
-Estimacion: 600 EUR/mes.
+Estimacion: 750 EUR/mes.
 
 Pensada para una implantacion pequena o inicial.
 
@@ -235,7 +223,7 @@ Incluye:
 
 ### Opcion Operativa
 
-Estimacion: 1.200 EUR/mes.
+Estimacion: 1.400 EUR/mes.
 
 Pensada para una implantacion con varios procesos administrativos activos.
 
@@ -248,11 +236,11 @@ Incluye:
 - optimizacion de automatizaciones existentes;
 - soporte prioritario en horario laboral;
 - preparacion de resumenes para administracion o direccion;
-- hasta dos reuniones mensuales de seguimiento.
+- hasta 4 reuniones mensuales de seguimiento.
 
 ### Opcion Control
 
-Estimacion: 1.800-2.500 EUR/mes.
+Estimacion: 1.800 EUR/mes.
 
 Pensada para una implantacion avanzada o con procesos criticos conectados a varias areas.
 
@@ -290,7 +278,7 @@ Propone ordenar, conectar y automatizar progresivamente los procesos administrat
 La prioridad es que Tecapres gane:
 
 - control sobre cada pedido;
-- menor dependencia de seguimientos manuales;
+- menor dependencia de seguimientos manuales y de personas
 - menos perdida de informacion;
 - mejor coordinacion interna;
 - mas trazabilidad;
@@ -313,3 +301,12 @@ Antes de la reunion, Tecapres puede preparar:
 - casos donde el servicio al cliente se haya visto afectado por falta de informacion, retrasos o coordinacion interna.
 
 Con esa informacion, mByte podra entregar una propuesta de implantacion ordenada por fases, precios y dificultad.
+
+
+## 8. Condiciones especiales para Tecapres
+
+Como caso especial de Tecapres, si se permite publicar el caso real como elemento comercial y caso de exito, mByte ofrece las siguientes condiciones:
+
+- No facturar nada si no se logra, al menos, una reduccion de 5 horas semanales en los procesos actuales y una sensacion de estar 100% satisfecho con el servicio de mByte y la mejora obtenida en Tecapres, a decision unilateral de Tecapres y sin preguntas.
+- 50% de rebaja respecto a los precios de implantacion indicados.
+- 50% de rebaja en el mantenimiento mensual durante los 6 primeros meses.
