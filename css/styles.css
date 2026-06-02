@@ -24,16 +24,20 @@ body{
 }
 
 /* ── LOGO ── */
-.logo-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.logo-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
 .logo-link svg{height:34px;width:auto}
 .logo-img{height:34px;width:auto;object-fit:contain;display:block}
-.logo-img--tagline{height:116px;max-width:48vw}
+.site-header .logo-img--tagline{
+  width:clamp(280px,18vw,380px);
+  height:auto;
+  max-width:42vw;
+}
 .logo-link span{font-weight:700;font-size:1.125rem;color:var(--black);letter-spacing:-.01em}
 
 /* ── HEADER ── */
 .site-header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 2rem;height:132px;
+  padding:0 2rem;height:110px;
   border-bottom:1px solid var(--gray-2);
   position:sticky;top:0;z-index:100;
   background:rgba(255,255,255,.92);
@@ -255,7 +259,7 @@ body{
 }
 @media(max-width:560px){
   .site-header{height:102px;padding:0 1rem}
-  .logo-img--tagline{height:86px;max-width:calc(100vw - 2rem)}
+  .site-header .logo-img--tagline{width:220px;max-width:calc(100vw - 2rem)}
   .card-grid-3,.card-grid-4{grid-template-columns:1fr}
   .metrics{grid-template-columns:1fr}
   .feature-row{grid-template-columns:1fr}
