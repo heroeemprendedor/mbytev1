@@ -27,6 +27,7 @@ body{
 .logo-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
 .logo-link svg{height:34px;width:auto}
 .logo-img{height:34px;width:auto;object-fit:contain;display:block}
+.logo-img--tagline{height:28px}
 .logo-link span{font-weight:700;font-size:1.125rem;color:var(--black);letter-spacing:-.01em}
 
 /* ── HEADER ── */
@@ -134,6 +135,7 @@ body{
 }
 .method-step h3{font-size:1.1rem;font-weight:600;margin-bottom:.625rem}
 .method-step p{color:var(--gray-3);font-size:.9375rem;line-height:1.65}
+.micro-note{margin-top:.75rem;font-size:.86rem;line-height:1.65;color:#444}
 
 /* ── CASE STUDY ── */
 .case{background:var(--black);color:var(--white);padding:6rem 2rem}
