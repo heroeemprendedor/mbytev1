@@ -173,6 +173,8 @@ body{
 }
 
 /* ── METHOD ── */
+.method-intro{max-width:850px;margin-top:1.35rem;color:var(--gray-3);font-size:1.0625rem;line-height:1.7}
+.method-intro p + p{margin-top:.9rem;color:var(--black);font-weight:500}
 .method-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
 .method-step{padding:2.5rem 2rem;border-left:1px solid var(--gray-2)}
 .method-step:first-child{border-left:none}
