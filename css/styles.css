@@ -300,6 +300,29 @@ body{
 .field-full{grid-column:1/-1}
 .form-note{font-size:.82rem;color:var(--gray-3);line-height:1.6}
 
+/* ── STICKY CTA ── */
+.sticky-cta{
+  position:fixed;
+  bottom:1.5rem;
+  right:1.5rem;
+  z-index:200;
+  background:var(--blue);
+  color:var(--white);
+  padding:.75rem 1.5rem;
+  border-radius:6px;
+  font-size:.875rem;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 6px 24px rgba(0,102,255,.35);
+  transition:background .15s, transform .15s, box-shadow .15s;
+  letter-spacing:.01em;
+}
+.sticky-cta:hover{
+  background:#0052cc;
+  transform:translateY(-2px);
+  box-shadow:0 10px 32px rgba(0,102,255,.45);
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .card-grid-3,.card-grid-4,.card-grid-5{grid-template-columns:repeat(2,1fr)}
@@ -317,6 +340,7 @@ body{
   .pricing-grid{grid-template-columns:1fr}
 }
 @media(max-width:560px){
+  .sticky-cta{left:1rem;right:1rem;text-align:center;bottom:1rem;font-size:.8125rem;padding:.7rem 1rem}
   .site-header{height:102px;padding:0 1rem}
   .site-header .logo-img--tagline{width:220px;max-width:calc(100vw - 2rem)}
   .card-grid-3,.card-grid-4,.card-grid-5{grid-template-columns:1fr}
