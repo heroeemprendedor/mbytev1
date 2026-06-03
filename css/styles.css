@@ -244,6 +244,60 @@ body{
 .site-footer a:hover{color:var(--black)}
 .footer-nav{display:flex;gap:1.5rem;flex-wrap:wrap}
 
+/* ── INTERNAL PAGES ── */
+.page-hero{
+  padding:5rem 2rem 4.5rem;
+  border-bottom:1px solid var(--gray-2);
+  background:var(--white);
+}
+.page-hero .section-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:end}
+.page-hero h1{font-size:clamp(2.1rem,5vw,4rem);font-weight:700;line-height:1.06;margin:1.5rem 0 1.25rem;max-width:880px}
+.page-hero p{color:#444;font-size:1.125rem;line-height:1.7;max-width:720px}
+.page-aside{
+  border:1.5px solid var(--gray-2);
+  border-radius:8px;
+  padding:1.5rem;
+  background:var(--gray-1);
+}
+.page-aside h2{font-size:1rem;margin-bottom:.75rem}
+.page-aside p,.page-aside li{color:var(--gray-3);font-size:.9rem;line-height:1.6}
+.page-aside ul{display:grid;gap:.75rem;list-style:none}
+.nav-active{color:var(--blue)!important}
+.content-band{padding:5rem 2rem}
+.content-band--gray{background:var(--gray-1)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.stack{display:grid;gap:1rem}
+.check-list{display:grid;gap:.85rem;list-style:none}
+.check-list li{display:flex;gap:.75rem;align-items:flex-start;color:var(--gray-3);line-height:1.6}
+.check-list li::before{content:"✓";font-family:'JetBrains Mono',monospace;color:var(--green);font-size:.78rem;margin-top:.18rem;flex:0 0 auto}
+.process-list{display:grid;gap:1px;background:var(--gray-2);border:1px solid var(--gray-2)}
+.process-item{display:grid;grid-template-columns:110px 1fr;gap:1.5rem;background:var(--white);padding:1.5rem}
+.process-item span{font-family:'JetBrains Mono',monospace;color:var(--blue);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em}
+.process-item h3{font-size:1.05rem;margin-bottom:.35rem}
+.process-item p{color:var(--gray-3);font-size:.94rem;line-height:1.65}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem}
+.price-card{border:1.5px solid var(--gray-2);border-radius:8px;padding:1.75rem;background:var(--white)}
+.price-card.featured{border-color:var(--black);box-shadow:0 16px 36px rgba(10,10,10,.07)}
+.price-card h3{font-size:1.1rem;margin-bottom:.5rem}
+.price-card .price{font-family:'JetBrains Mono',monospace;font-size:1.35rem;color:var(--blue);margin-bottom:1rem}
+.price-card p,.price-card li{color:var(--gray-3);font-size:.9rem;line-height:1.6}
+.price-card ul{display:grid;gap:.65rem;list-style:none;margin-top:1rem}
+.faq-list{display:grid;gap:1px;background:var(--gray-2);border:1px solid var(--gray-2);margin-top:2rem}
+.faq-item{background:var(--white);padding:1.5rem}
+.faq-item h3{font-size:1rem;margin-bottom:.45rem}
+.faq-item p{color:var(--gray-3);font-size:.94rem;line-height:1.65}
+.form-shell{border:1.5px solid var(--gray-2);border-radius:8px;padding:1.75rem;background:var(--white)}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}
+.field{display:grid;gap:.4rem}
+.field label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-3)}
+.field input,.field textarea,.field select{
+  width:100%;border:1.5px solid var(--gray-2);border-radius:5px;
+  padding:.8rem .85rem;font:inherit;color:var(--black);background:var(--white);
+}
+.field textarea{min-height:130px;resize:vertical}
+.field-full{grid-column:1/-1}
+.form-note{font-size:.82rem;color:var(--gray-3);line-height:1.6}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .card-grid-3,.card-grid-4,.card-grid-5{grid-template-columns:repeat(2,1fr)}
@@ -257,6 +311,8 @@ body{
   .case-list span{font-size:.875rem}
   .header-nav{display:none}
   .header-cta{display:none}
+  .page-hero .section-wrap,.two-col{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
 }
 @media(max-width:560px){
   .site-header{height:102px;padding:0 1rem}
@@ -267,4 +323,7 @@ body{
   .area-cluster{padding:1.35rem}
   .hero h1{font-size:2rem}
   .section{padding:4rem 1.25rem}
+  .page-hero,.content-band{padding-left:1.25rem;padding-right:1.25rem}
+  .process-item{grid-template-columns:1fr;gap:.5rem}
+  .field-grid{grid-template-columns:1fr}
 }
