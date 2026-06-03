@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>mByte — Inversores</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="mByte — Oportunidad de inversión. Acceso restringido.">
+<link rel="icon" type="image/png" href="../assets/mbyte-logo-real.png">
+<link rel="stylesheet" href="../css/styles.css?v=20260603-inv">
+<style>
+/* === PIN GATE === */
+.pin-gate{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+.pin-gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.pin-gate h2{color:#fff;font-size:1.1rem;font-weight:500;margin-bottom:1.5rem;letter-spacing:.05em}
+.pin-dots{display:flex;gap:12px;margin-bottom:2rem}
+.pin-dots .dot{width:14px;height:14px;border-radius:50%;border:2px solid #444;transition:background .2s,border-color .2s}
+.pin-dots .dot.filled{background:var(--blue);border-color:var(--blue)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,72px);gap:10px}
+.pin-pad button{width:72px;height:72px;border-radius:14px;border:1px solid #333;background:#1a1a1a;color:#fff;font-size:1.4rem;font-weight:600;cursor:pointer;transition:background .15s,transform .1s;font-family:'Inter',sans-serif}
+.pin-pad button:hover{background:#2a2a2a}
+.pin-pad button:active{transform:scale(.95)}
+.pin-pad .pin-del{font-size:1rem;color:#888}
+.pin-pad .pin-empty{visibility:hidden}
+.pin-error{color:var(--red);font-size:.8rem;margin-top:1rem;opacity:0;transition:opacity .3s}
+.pin-error.show{opacity:1}
+
+/* === INVESTOR PAGE === */
+.inv-hero{text-align:center;padding:6rem 2rem 4rem;background:linear-gradient(175deg,#f0f4ff 0%,#fff 50%,#f8f9fb 100%);position:relative;overflow:hidden}
+.inv-hero::before{content:'';position:absolute;top:-100px;right:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,102,255,.06) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.inv-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em}
+.inv-hero h1 em{font-style:normal;color:var(--blue)}
+.inv-hero .sub{color:var(--gray-3);font-size:1.1rem;max-width:700px;margin:0 auto 1.5rem;line-height:1.6}
+.inv-tags{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.inv-tag{background:var(--blue-light);color:var(--blue);padding:.35rem .9rem;border-radius:99px;font-size:.75rem;font-weight:600;letter-spacing:.03em}
+
+.inv-section{padding:5rem 2rem}
+.inv-section:nth-child(even){background:var(--gray-1)}
+.inv-wrap{max-width:1080px;margin:0 auto}
+.inv-label{font-family:'JetBrains Mono',monospace;font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem;display:inline-block;background:var(--blue-light);padding:.3rem .7rem;border-radius:99px}
+.inv-title{font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.inv-subtitle{color:var(--gray-3);font-size:1rem;max-width:700px;line-height:1.6;margin-bottom:2rem}
+
+/* metrics */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;margin:2rem 0}
+.metric-card{background:#fff;border:1px solid var(--gray-2);border-radius:var(--radius);padding:1.5rem;text-align:center}
+.metric-card .val{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--blue);line-height:1}
+.metric-card .label{font-size:.8rem;color:var(--gray-3);margin-top:.4rem;line-height:1.3}
+
+/* plans */
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin:2rem 0}
+.plan-card{background:#fff;border:1px solid var(--gray-2);border-radius:var(--radius);padding:1.5rem;position:relative}
+.plan-card.featured{border-color:var(--blue);box-shadow:0 4px 20px rgba(0,102,255,.08)}
+.plan-card .plan-name{font-weight:700;font-size:1rem;margin-bottom:.3rem}
+.plan-card .plan-price{font-size:1.8rem;font-weight:800;color:var(--blue)}
+.plan-card .plan-price small{font-size:.5em;color:var(--gray-3);font-weight:400}
+.plan-card ul{list-style:none;margin-top:.8rem}
+.plan-card ul li{padding:.25rem 0;font-size:.85rem;color:var(--gray-3)}
+.plan-card ul li::before{content:'✓ ';color:var(--green);font-weight:700}
+.plan-card .plan-margin{margin-top:.8rem;font-size:.75rem;padding:.3rem .6rem;background:var(--green-bg);color:var(--green);border-radius:4px;display:inline-block}
+.plan-card.featured .plan-badge{position:absolute;top:-10px;right:16px;background:var(--blue);color:#fff;padding:.2rem .7rem;border-radius:99px;font-size:.65rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+/* timeline */
+.timeline{display:flex;gap:0;margin:2rem 0;position:relative}
+.timeline::before{content:'';position:absolute;top:26px;left:0;right:0;height:3px;background:var(--gray-2)}
+.tl-phase{flex:1;text-align:center;position:relative;padding:0 .5rem}
+.tl-phase .tl-dot{width:14px;height:14px;background:var(--blue);border-radius:50%;margin:20px auto .8rem;position:relative;z-index:1;border:3px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+.tl-phase .tl-title{font-weight:700;font-size:.85rem;margin-bottom:.2rem}
+.tl-phase .tl-data{font-size:.75rem;color:var(--gray-3);line-height:1.4}
+.tl-phase .tl-val{font-size:1.1rem;font-weight:800;color:var(--blue)}
+
+/* matrix */
+.matrix-container{max-width:600px;margin:2rem auto;position:relative}
+.matrix-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.matrix-cell{border:1px solid var(--gray-2);border-radius:var(--radius);padding:1.2rem;text-align:center;background:#fff}
+.matrix-cell.highlight{border-color:var(--blue);background:var(--blue-light);box-shadow:0 4px 20px rgba(0,102,255,.1)}
+.matrix-cell h4{font-size:.9rem;margin-bottom:.3rem}
+.matrix-cell p{font-size:.75rem;color:var(--gray-3);line-height:1.3}
+.matrix-axes{display:flex;justify-content:space-between;font-size:.65rem;color:var(--gray-3);margin-top:.5rem;padding:0 .5rem}
+
+/* bar chart */
+.bar-chart{max-width:500px;margin:1.5rem 0}
+.bar-row{display:flex;align-items:center;margin:.5rem 0}
+.bar-label{width:130px;font-size:.8rem;text-align:right;padding-right:1rem;color:var(--gray-3)}
+.bar-track{flex:1;height:28px;background:var(--gray-1);border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:.6rem;font-size:.7rem;font-weight:600;color:#fff}
+
+/* vision timeline */
+.vision-list{max-width:700px;margin:2rem 0}
+.v-item{display:flex;gap:1rem;margin:1rem 0;align-items:flex-start}
+.v-dot{width:12px;height:12px;border-radius:50%;background:var(--blue);margin-top:5px;flex-shrink:0}
+.v-time{font-weight:700;font-size:.95rem}
+.v-desc{font-size:.85rem;color:var(--gray-3)}
+
+/* screenshots gallery */
+.screenshots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin:2rem 0}
+.screenshot{border-radius:var(--radius);overflow:hidden;border:1px solid var(--gray-2);box-shadow:var(--shadow-sm)}
+.screenshot img{width:100%;height:auto;display:block}
+.screenshot .ss-label{padding:.6rem .8rem;font-size:.75rem;font-weight:600;color:var(--gray-3);background:#fff}
+
+/* modules grid */
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin:1.5rem 0}
+.mod-card{background:#fff;border:1px solid var(--gray-2);border-radius:var(--radius-sm);padding:1rem .8rem;text-align:center;transition:border-color .2s}
+.mod-card:hover{border-color:var(--blue)}
+.mod-card .mod-icon{font-size:1.8rem;margin-bottom:.4rem}
+.mod-card .mod-name{font-size:.8rem;font-weight:600}
+
+/* founder cards */
+.founder-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}
+.founder-card{background:#fff;border:1px solid var(--gray-2);border-radius:var(--radius);padding:1.5rem;text-align:center}
+.founder-card .avatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--green));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;font-weight:800}
+.founder-card .f-name{font-weight:700;font-size:1.1rem}
+.founder-card .f-role{color:var(--blue);font-weight:600;font-size:.8rem;margin-bottom:.5rem}
+.founder-card .f-desc{font-size:.85rem;color:var(--gray-3)}
+
+/* quote */
+.inv-quote{background:#fff;border-left:4px solid var(--blue);padding:1.2rem 1.5rem;border-radius:0 var(--radius) var(--radius) 0;max-width:700px;margin:2rem 0;font-style:italic;color:var(--gray-3);line-height:1.6;font-size:.95rem}
+.inv-quote .author{font-style:normal;font-weight:600;color:var(--black);margin-top:.5rem}
+
+/* table */
+.inv-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.85rem}
+.inv-table th{text-align:left;padding:.6rem .8rem;background:var(--gray-1);font-weight:600;border-bottom:2px solid var(--gray-2)}
+.inv-table td{padding:.5rem .8rem;border-bottom:1px solid var(--gray-2)}
+.inv-table td:last-child,.inv-table th:last-child{text-align:right}
+
+/* downloads */
+.download-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0}
+.download-card{background:#fff;border:1px solid var(--gray-2);border-radius:var(--radius);padding:1.2rem;display:flex;flex-direction:column;align-items:center;text-align:center;transition:border-color .2s;text-decoration:none;color:var(--black)}
+.download-card:hover{border-color:var(--blue)}
+.download-card .dl-icon{font-size:2rem;margin-bottom:.5rem}
+.download-card .dl-name{font-weight:600;font-size:.9rem}
+.download-card .dl-desc{font-size:.75rem;color:var(--gray-3);margin-top:.3rem}
+
+/* CTA final */
+.inv-cta{text-align:center;padding:5rem 2rem;background:var(--black);color:#fff}
+.inv-cta h2{color:#fff;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;margin-bottom:1rem}
+.inv-cta p{color:#888;max-width:600px;margin:0 auto 2rem;font-size:1rem}
+.inv-cta .cta-btn{display:inline-block;background:var(--blue);color:#fff;padding:.8rem 2rem;border-radius:var(--radius-sm);font-weight:700;text-decoration:none;transition:background .15s}
+.inv-cta .cta-btn:hover{background:var(--blue-dark)}
+
+/* responsive */
+@media(max-width:768px){
+  .timeline{flex-direction:column;gap:1rem}
+  .timeline::before{display:none}
+  .matrix-grid{grid-template-columns:1fr}
+  .metric-grid{grid-template-columns:repeat(2,1fr)}
+  .pin-pad button{width:64px;height:64px;font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ PIN GATE ═══ -->
+<div class="pin-gate" id="pinGate">
+  <img src="../assets/mbyte-logo-real.png" alt="mByte" style="width:60px;margin-bottom:1.5rem;border-radius:12px">
+  <h2>Acceso inversores</h2>
+  <div class="pin-dots" id="pinDots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="pin-pad" id="pinPad">
+    <button onclick="pinKey('1')">1</button><button onclick="pinKey('2')">2</button><button onclick="pinKey('3')">3</button>
+    <button onclick="pinKey('4')">4</button><button onclick="pinKey('5')">5</button><button onclick="pinKey('6')">6</button>
+    <button onclick="pinKey('7')">7</button><button onclick="pinKey('8')">8</button><button onclick="pinKey('9')">9</button>
+    <button class="pin-empty"></button><button onclick="pinKey('0')">0</button><button class="pin-del" onclick="pinDel()">⌫</button>
+  </div>
+  <div class="pin-error" id="pinError">PIN incorrecto</div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <a href="../" class="logo-link" aria-label="mByte">
+    <img src="../assets/mbyte-logo-tagline.svg" alt="mByte" class="logo-img logo-img--tagline" />
+  </a>
+  <nav><ul class="header-nav"><li><span style="color:var(--blue);font-weight:600;font-size:.8rem">🔒 Inversores</span></li></ul></nav>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="inv-hero">
+  <span class="inv-tag" style="margin-bottom:1rem">Capital semilla · Junio 2026</span>
+  <h1>El sistema operativo de<br>automatización para <em>pymes</em></h1>
+  <p class="sub">mByte combina agentes IA, plataforma propia por cliente y soporte humano para que las pymes operen con control, continuidad y previsibilidad. Ya funciona en producción con un restaurante real.</p>
+  <div class="inv-tags">
+    <span class="inv-tag">Producto en producción</span>
+    <span class="inv-tag">ROI 3,1x demostrado</span>
+    <span class="inv-tag">$300-500K seed</span>
+    <span class="inv-tag">Break-even mes 10</span>
+  </div>
+</section>
+
+<!-- ═══ EL PROBLEMA ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">El problema</span>
+    <h2 class="inv-title">Las pymes operan sin sistema</h2>
+    <p class="inv-subtitle">WhatsApp como CRM. Excel como ERP. Memoria como base de datos. Personas clave que lo sostienen todo. Urgencias como método. El coste oculto es enorme.</p>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="val">73%</div><div class="label">de pymes sin sistema operativo digital integrado</div></div>
+      <div class="metric-card"><div class="val">3h/día</div><div class="label">del propietario en gestión manual repetitiva</div></div>
+      <div class="metric-card"><div class="val">€2.900</div><div class="label">coste mensual de cubrir estas funciones con personas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LA SOLUCIÓN ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">La solución</span>
+    <h2 class="inv-title">mByte instala control operativo</h2>
+    <p class="inv-subtitle">Un sistema que combina procesos, automatizaciones y agentes IA de tarea concreta. Cada cliente recibe su propia plataforma web con módulos operativos reales.</p>
+    <div class="plan-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="plan-card"><h3 style="text-align:center;font-size:1.5rem;margin-bottom:.5rem">⚙️</h3><div class="plan-name" style="text-align:center">Procesos</div><p style="font-size:.85rem;color:var(--gray-3);text-align:center;margin-top:.5rem">Fases, estados, responsables, SLAs. Primero el proceso, luego la tecnología.</p></div>
+      <div class="plan-card"><h3 style="text-align:center;font-size:1.5rem;margin-bottom:.5rem">🔄</h3><div class="plan-name" style="text-align:center">Automatizaciones</div><p style="font-size:.85rem;color:var(--gray-3);text-align:center;margin-top:.5rem">Tareas repetitivas eliminadas. Recordatorios, alertas, clasificación, reporting.</p></div>
+      <div class="plan-card"><h3 style="text-align:center;font-size:1.5rem;margin-bottom:.5rem">🤖</h3><div class="plan-name" style="text-align:center">Agentes IA</div><p style="font-size:.85rem;color:var(--gray-3);text-align:center;margin-top:.5rem">Un agente por tarea: reservas, CRM, compras, comunicación, control financiero.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-weight:600;color:var(--blue)">No vendemos IA. Instalamos control, continuidad y previsibilidad.</p>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTO ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">El producto</span>
+    <h2 class="inv-title">Una plataforma propia por cliente</h2>
+    <p class="inv-subtitle">Cada cliente recibe su propio centro de control con módulos operativos reales y datos de su negocio. No es un chatbot. Es el sistema con el que opera.</p>
+    <div class="modules-grid">
+      <div class="mod-card"><div class="mod-icon">📊</div><div class="mod-name">Dashboard</div></div>
+      <div class="mod-card"><div class="mod-icon">📅</div><div class="mod-name">Reservas</div></div>
+      <div class="mod-card"><div class="mod-icon">👥</div><div class="mod-name">CRM</div></div>
+      <div class="mod-card"><div class="mod-icon">🍳</div><div class="mod-name">Cocina</div></div>
+      <div class="mod-card"><div class="mod-icon">🛒</div><div class="mod-name">Compras</div></div>
+      <div class="mod-card"><div class="mod-icon">💼</div><div class="mod-name">Negocio</div></div>
+      <div class="mod-card"><div class="mod-icon">💰</div><div class="mod-name">Finanzas</div></div>
+      <div class="mod-card"><div class="mod-icon">⚖️</div><div class="mod-name">Legal</div></div>
+      <div class="mod-card"><div class="mod-icon">🗺️</div><div class="mod-name">Organización</div></div>
+      <div class="mod-card"><div class="mod-icon">📡</div><div class="mod-name">Comunicación</div></div>
+    </div>
+
+    <!-- Screenshots placeholder: se reemplazan con imágenes reales -->
+    <h3 style="margin-top:2.5rem;margin-bottom:.5rem">Capturas reales de producción</h3>
+    <p style="font-size:.85rem;color:var(--gray-3);margin-bottom:1rem">Sistema operando Restaurante El Viso — datos reales, junio 2026.</p>
+    <div class="screenshots">
+      <div class="screenshot"><div style="background:#1a1a1a;padding:2rem;text-align:center;color:#666;font-size:.8rem;min-height:200px;display:flex;align-items:center;justify-content:center">📊 Dashboard: 13 reservas · 39 comensales · 98% ocupación</div><div class="ss-label">Dashboard — Vista del día</div></div>
+      <div class="screenshot"><div style="background:#faf7f2;padding:2rem;text-align:center;color:#666;font-size:.8rem;min-height:200px;display:flex;align-items:center;justify-content:center">📅 Calendario mensual con reservas por día y detalle de comensales</div><div class="ss-label">Reservas — Calendario</div></div>
+      <div class="screenshot"><div style="background:#faf7f2;padding:2rem;text-align:center;color:#666;font-size:.8rem;min-height:200px;display:flex;align-items:center;justify-content:center">👥 311 clientes registrados con teléfono, historial y visitas</div><div class="ss-label">CRM — 311 clientes</div></div>
+      <div class="screenshot"><div style="background:#faf7f2;padding:2rem;text-align:center;color:#666;font-size:.8rem;min-height:200px;display:flex;align-items:center;justify-content:center">🍳 Menú degustación: platos, costes, márgenes, semáforo de rentabilidad</div><div class="ss-label">Cocina — Escandallos</div></div>
+      <div class="screenshot"><div style="background:#faf7f2;padding:2rem;text-align:center;color:#666;font-size:.8rem;min-height:200px;display:flex;align-items:center;justify-content:center">💼 943 comensales · 32.513€ ingresos · 22.583€ margen estimado</div><div class="ss-label">Negocio — Control mensual</div></div>
+      <div class="screenshot"><div style="background:#faf7f2;padding:2rem;text-align:center;color:#666;font-size:.8rem;min-height:200px;display:flex;align-items:center;justify-content:center">🗺️ 6 áreas · 18 tareas · Estado por responsable y proceso</div><div class="ss-label">Mapa — Organización</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASO REAL ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">Caso real</span>
+    <h2 class="inv-title">4 meses en producción. Resultados reales.</h2>
+    <p class="inv-subtitle">Restaurante El Viso, España. Sistema completo en producción desde febrero 2026. No es un mockup. Es un negocio real operando con mByte.</p>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="val">-93%</div><div class="label">Tiempo de respuesta a reservas</div></div>
+      <div class="metric-card"><div class="val">-85%</div><div class="label">Reservas perdidas por no-respuesta</div></div>
+      <div class="metric-card"><div class="val">-75%</div><div class="label">Tiempo diario en gestión</div></div>
+      <div class="metric-card"><div class="val">3,1x</div><div class="label">ROI demostrado</div></div>
+      <div class="metric-card"><div class="val">+660%</div><div class="label">Clientes registrados con datos útiles</div></div>
+      <div class="metric-card"><div class="val">10</div><div class="label">Módulos operativos implantados</div></div>
+    </div>
+    <div class="inv-quote">
+      "Antes gestionaba todo de memoria y con WhatsApp. Perdíamos reservas por no contestar a tiempo. Ahora tengo un panel donde veo el día entero y controlo costes por plato. Eso no lo teníamos ni con la gestoría."
+      <div class="author">— Propietaria, Restaurante El Viso</div>
+    </div>
+    <table class="inv-table" style="max-width:600px;margin-top:2rem">
+      <tr><th>Concepto</th><th>Valor mensual</th></tr>
+      <tr><td>Reservas recuperadas</td><td>~$2.400</td></tr>
+      <tr><td>Reducción no-shows</td><td>~$1.800</td></tr>
+      <tr><td>Ahorro tiempo propietaria</td><td>~$1.460</td></tr>
+      <tr><td>Detección sobrecostes</td><td>~$600</td></tr>
+      <tr><td style="font-weight:700">Valor total generado</td><td style="font-weight:700;color:var(--blue)">~$6.260</td></tr>
+      <tr><td>Coste del servicio mByte</td><td>$1.990</td></tr>
+      <tr><td style="font-weight:700">ROI</td><td style="font-weight:700;color:var(--green)">3,1x</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ MERCADO ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">El mercado</span>
+    <h2 class="inv-title">El mercado de IA más grande de la historia</h2>
+    <div class="metric-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">$7,84B</div><div class="label">Mercado agentes IA 2025</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">$52,6B</div><div class="label">Proyección 2030</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">46%</div><div class="label">CAGR</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">$364B</div><div class="label">Invertidos en IA, mayo 2026</div></div>
+    </div>
+    <h3 style="margin-top:2.5rem">Mercado objetivo</h3>
+    <table class="inv-table" style="max-width:600px">
+      <tr><th>Nivel</th><th>Tamaño</th></tr>
+      <tr><td>TAM Global agentes IA (2030)</td><td>$52,6B</td></tr>
+      <tr><td>SAM España (pymes target)</td><td>~105.000 empresas</td></tr>
+      <tr><td>SOM 24 meses</td><td>80-120 clientes (0,1%)</td></tr>
+    </table>
+    <p style="font-size:.85rem;color:var(--gray-3);margin-top:1.5rem"><strong>Ámbito geográfico:</strong> España (principal), Paraguay, Portugal, Suiza. Extensión LATAM a partir de mes 24.</p>
+  </div>
+</section>
+
+<!-- ═══ MODELO DE NEGOCIO ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">Modelo de negocio</span>
+    <h2 class="inv-title">Revenue recurrente, márgenes crecientes</h2>
+    <p class="inv-subtitle">Cuota mensual fija, todo incluido: infraestructura, IA, teléfono, canales, soporte humano, supervisión, mejora continua. Permanencia mínima 6 meses.</p>
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-name">Base</div>
+        <div class="plan-price">$990<small>/mes</small></div>
+        <ul>
+          <li>Reservas + WhatsApp + CRM</li>
+          <li>Calendario + recordatorios</li>
+          <li>Resumen diario · 1 canal</li>
+          <li>Supervisión equipo mByte</li>
+        </ul>
+        <div class="plan-margin">Margen ~29%</div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Recomendado</div>
+        <div class="plan-name">Operativo</div>
+        <div class="plan-price">$1.490<small>/mes</small></div>
+        <ul>
+          <li>Todo de Base +</li>
+          <li>Compras, proveedores, costes</li>
+          <li>Equipo, turnos, comunicación</li>
+          <li>2 canales · Revisiones quincenales</li>
+        </ul>
+        <div class="plan-margin">Margen ~40%</div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Integral</div>
+        <div class="plan-price">$1.990<small>/mes</small></div>
+        <ul>
+          <li>Todo de Operativo +</li>
+          <li>Teléfono IA + asesoría fiscal</li>
+          <li>RRSS, reseñas, newsletter</li>
+          <li>Reporting avanzado · Semanal</li>
+        </ul>
+        <div class="plan-margin">Margen ~45%</div>
+      </div>
+    </div>
+    <div class="metric-grid" style="grid-template-columns:repeat(3,1fr);margin-top:2rem;max-width:600px">
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">$1.518</div><div class="label">Ticket medio</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">&gt;4x</div><div class="label">LTV / CAC</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">35-45%</div><div class="label">Margen bruto</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROADMAP ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">Roadmap</span>
+    <h2 class="inv-title">De 1 cliente a 93 en 24 meses</h2>
+    <div class="timeline">
+      <div class="tl-phase"><div class="tl-dot"></div><div class="tl-title">Fundación</div><div class="tl-data">Meses 1-6</div><div class="tl-val">7 clientes</div><div class="tl-data">$9K MRR</div></div>
+      <div class="tl-phase"><div class="tl-dot"></div><div class="tl-title">Validación</div><div class="tl-data">Meses 7-12</div><div class="tl-val">24 clientes</div><div class="tl-data">$35K MRR</div></div>
+      <div class="tl-phase"><div class="tl-dot"></div><div class="tl-title">Escala</div><div class="tl-data">Meses 13-18</div><div class="tl-val">52 clientes</div><div class="tl-data">$78K MRR</div></div>
+      <div class="tl-phase"><div class="tl-dot"></div><div class="tl-title">Aceleración</div><div class="tl-data">Meses 19-24</div><div class="tl-val">93 clientes</div><div class="tl-data">$141K MRR</div></div>
+    </div>
+    <div class="metric-grid" style="grid-template-columns:repeat(3,1fr);margin-top:2rem;max-width:700px">
+      <div class="metric-card"><div class="val" style="font-size:1.8rem">Mes 10</div><div class="label">Break-even operativo</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.8rem">$1,7M</div><div class="label">ARR en mes 24</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.8rem">46%</div><div class="label">EBITDA mes 24</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPETENCIA ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">Competencia</span>
+    <h2 class="inv-title">El espacio que nadie ocupa</h2>
+    <p class="inv-subtitle">mByte está entre el SaaS barato (sin servicio humano) y la consultora cara (sin tecnología real). Ese hueco es donde se construyen las empresas de $100M+.</p>
+    <div class="matrix-container">
+      <div style="text-align:center;font-size:.7rem;color:var(--gray-3);margin-bottom:.3rem">↑ Más servicio / implantación</div>
+      <div class="matrix-grid">
+        <div class="matrix-cell"><h4>🏢 Consultoras / BPO</h4><p>Alto servicio, baja tech<br>$3.000-8.000/mes<br>No escala</p></div>
+        <div class="matrix-cell highlight"><h4>🧬 mByte</h4><p style="color:var(--blue);font-weight:600">Tech + servicio + plataforma<br>$990-1.990/mes<br>Escala por vertical</p></div>
+        <div class="matrix-cell"><h4>📋 Gestión manual</h4><p>Sin tech, sin sistema<br>Coste oculto alto<br>No escala</p></div>
+        <div class="matrix-cell"><h4>💻 SaaS baratos</h4><p>Tech sin servicio<br>$50-200/mes<br>Sin implantación real</p></div>
+      </div>
+      <div class="matrix-axes"><span>← Menos tecnología</span><span>Más tecnología →</span></div>
+    </div>
+    <p style="text-align:center;margin-top:1.5rem;font-weight:600;color:var(--blue)">Más profundo que un SaaS. Más escalable que una consultora.</p>
+  </div>
+</section>
+
+<!-- ═══ EQUIPO ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">Equipo</span>
+    <h2 class="inv-title">Equipo fundador</h2>
+    <div class="founder-grid">
+      <div class="founder-card">
+        <div class="avatar">G</div>
+        <div class="f-name">Guillermo</div>
+        <div class="f-role">CEO · Estrategia · Producto</div>
+        <div class="f-desc">Emprendedor con experiencia en sistemas operativos para empresas (Núcleo). Constructor del producto actual. Operación en España, Paraguay, Portugal y Suiza.</div>
+      </div>
+      <div class="founder-card">
+        <div class="avatar">S</div>
+        <div class="f-name">Socio cofundador</div>
+        <div class="f-role">COO · Operaciones · Crecimiento</div>
+        <div class="f-desc">Experiencia en operaciones, desarrollo de negocio y gestión en mercados europeos y latinoamericanos.</div>
+      </div>
+    </div>
+    <div class="metric-grid" style="grid-template-columns:repeat(3,1fr);max-width:700px;margin-top:1.5rem">
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">🌍 4</div><div class="label">Mercados: ES, PY, PT, CH</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">🏗️</div><div class="label">Producto ya en producción</div></div>
+      <div class="metric-card"><div class="val" style="font-size:1.5rem">2→15</div><div class="label">Plan de equipo a 24 meses</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LA RONDA ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">La ronda</span>
+    <h2 class="inv-title">Capital semilla: $300-500K</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:2rem">
+      <div>
+        <table class="inv-table">
+          <tr><td>Capital a levantar</td><td><strong>$300K – $500K</strong></td></tr>
+          <tr><td>Valoración pre-money</td><td><strong>$2M – $4M</strong></td></tr>
+          <tr><td>Dilución</td><td><strong>12-17%</strong></td></tr>
+          <tr><td>Runway</td><td><strong>18-24 meses</strong></td></tr>
+          <tr><td>Break-even operativo</td><td><strong>Mes 10</strong></td></tr>
+          <tr><td>Estructura</td><td><strong>SRL Paraguay (IRE 10%)</strong></td></tr>
+          <tr><td>Tipo de inversor</td><td><strong>Socios de confianza</strong></td></tr>
+        </table>
+      </div>
+      <div>
+        <h3 style="margin-bottom:1rem">Uso de fondos</h3>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bar-label">Equipo</span><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--blue)">50%</div></div></div>
+          <div class="bar-row"><span class="bar-label">Comercial</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--green)">20%</div></div></div>
+          <div class="bar-row"><span class="bar-label">Infraestructura</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:#7c4dff">10%</div></div></div>
+          <div class="bar-row"><span class="bar-label">Legal / fiscal</span><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--amber)">5%</div></div></div>
+          <div class="bar-row"><span class="bar-label">Buffer</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:#888">15%</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RETORNO ═══ -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <span class="inv-label">Retorno</span>
+    <h2 class="inv-title">Retorno potencial para el inversor</h2>
+    <table class="inv-table" style="max-width:700px">
+      <tr><th>Escenario</th><th style="text-align:center">Valoración</th><th style="text-align:center">Múltiplo</th><th>Plazo</th></tr>
+      <tr><td>Series A</td><td style="text-align:center">$25-40M</td><td style="text-align:center;color:var(--blue);font-weight:700">10-17x</td><td>~2,5 años</td></tr>
+      <tr><td>Crecimiento orgánico</td><td style="text-align:center">$100-150M</td><td style="text-align:center;color:var(--blue);font-weight:700">42-62x</td><td>~4 años</td></tr>
+      <tr><td>Exit estratégico</td><td style="text-align:center">$50-200M</td><td style="text-align:center;color:var(--blue);font-weight:700">21-83x</td><td>3-5 años</td></tr>
+    </table>
+    <h3 style="margin-top:2.5rem">Visión a largo plazo</h3>
+    <div class="vision-list">
+      <div class="v-item"><div class="v-dot"></div><div><div class="v-time">Hoy</div><div class="v-desc">1 cliente en producción. Producto probado. 10 módulos operativos.</div></div></div>
+      <div class="v-item"><div class="v-dot"></div><div><div class="v-time">Mes 24</div><div class="v-desc">93 clientes · $1,7M ARR · Presencia en España, Paraguay, Portugal, Suiza</div></div></div>
+      <div class="v-item"><div class="v-dot" style="background:var(--green)"></div><div><div class="v-time">Mes 36 — Series A</div><div class="v-desc">250+ clientes · $4-6M ARR · Plataforma estandarizada por vertical</div></div></div>
+      <div class="v-item"><div class="v-dot" style="background:var(--green)"></div><div><div class="v-time">Mes 48</div><div class="v-desc">500+ clientes · $10-15M ARR · Expansión LATAM · Verticales múltiples</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="inv-cta">
+  <h2>No vendemos servicios.<br>Operamos negocios.</h2>
+  <p>mByte busca socios que entiendan que estamos construyendo una empresa de control operativo, no un experimento de IA. El sistema ya funciona. Ahora hay que escalarlo.</p>
+  <a href="mailto:contacto@mbyte.pro" class="cta-btn">contacto@mbyte.pro</a>
+  <p style="margin-top:1.5rem;font-size:.8rem;color:#555">mbyte.pro · Capital semilla · Junio 2026</p>
+</section>
+
+<!-- ═══ PIN SCRIPT ═══ -->
+<script>
+const PIN='0406';
+let entry='';
+const gate=document.getElementById('pinGate');
+const dots=document.querySelectorAll('#pinDots .dot');
+const errEl=document.getElementById('pinError');
+
+// Check session
+if(sessionStorage.getItem('mbyte-inv-auth')==='1') gate.classList.add('hidden');
+
+function updateDots(){dots.forEach((d,i)=>d.classList.toggle('filled',i<entry.length))}
+function pinKey(n){
+  if(entry.length>=4)return;
+  entry+=n;
+  updateDots();
+  errEl.classList.remove('show');
+  if(entry.length===4){
+    if(entry===PIN){
+      sessionStorage.setItem('mbyte-inv-auth','1');
+      setTimeout(()=>gate.classList.add('hidden'),300);
+    }else{
+      errEl.classList.add('show');
+      setTimeout(()=>{entry='';updateDots()},600);
+    }
+  }
+}
+function pinDel(){entry=entry.slice(0,-1);updateDots();errEl.classList.remove('show')}
+document.addEventListener('keydown',e=>{
+  if(!gate.classList.contains('hidden')){
+    if(e.key>='0'&&e.key<='9')pinKey(e.key);
+    if(e.key==='Backspace')pinDel();
+  }
+});
+</script>
+
+</body>
+</html>
