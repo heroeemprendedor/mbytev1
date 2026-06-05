@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="mByte — Oportunidad de inversión. Acceso restringido.">
 <link rel="icon" type="image/png" href="../assets/mbyte-logo-real.png">
-<link rel="stylesheet" href="../css/styles.css?v=20260603-inv">
+<link rel="stylesheet" href="../css/styles.css?v=20260605-nav">
 <style>
 /* === PIN GATE === */
 .pin-gate{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
@@ -172,7 +172,24 @@
     <img src="../assets/mbyte-logo-tagline.svg" alt="mByte" class="logo-img logo-img--tagline" />
   </a>
   <nav><ul class="header-nav"><li><span style="color:var(--blue);font-weight:600;font-size:.8rem">🔒 Inversores</span></li></ul></nav>
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- ═══ MOBILE NAV OVERLAY ═══ -->
+<div class="mobile-nav-overlay" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <nav>
+      <a href="../metodo/">Método</a>
+      <a href="../sectores/">Sectores</a>
+      <a href="../diagnostico/">Diagnóstico</a>
+      <a href="../planes/">Planes</a>
+      <a href="../inversores/">Inversores</a>
+      <a href="../diagnostico/" class="mobile-nav-cta">Diagnóstico operativo</a>
+    </nav>
+  </div>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="inv-hero">
@@ -582,5 +599,7 @@ document.addEventListener('keydown',e=>{
 });
 </script>
 
+
+<script src="../js/main.js?v=20260605-nav"></script>
 </body>
 </html>

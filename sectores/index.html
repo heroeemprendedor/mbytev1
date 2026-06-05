@@ -6,7 +6,7 @@
 <title>Sectores — mByte · Sistema operativo para empresas</title>
 <meta name="description" content="mByte adapta su sistema operativo a sectores concretos: hostelería, industria, servicios y freelancers. Cada empresa recibe su propia plataforma de gestión.">
 <link rel="icon" type="image/png" href="../assets/mbyte-logo-real.png">
-<link rel="stylesheet" href="../css/styles.css?v=20260603-sectores-v2">
+<link rel="stylesheet" href="../css/styles.css?v=20260605-nav">
 </head>
 <body>
 <header class="site-header">
@@ -18,7 +18,31 @@
     <li><a href="../planes/">Planes</a></li>
   </ul></nav>
   <a href="../diagnostico/" class="header-cta">Diagnóstico operativo</a>
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- ═══ MOBILE NAV OVERLAY ═══ -->
+<div class="mobile-nav-overlay" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <nav>
+      <a href="../metodo/">Método</a>
+      <a href="../sectores/">Sectores</a>
+      <a href="../diagnostico/">Diagnóstico</a>
+      <a href="../planes/">Planes</a>
+      <a href="../inversores/">Inversores</a>
+      <a href="../diagnostico/" class="mobile-nav-cta">Diagnóstico operativo</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══ ANNOUNCEMENT BANNER ═══ -->
+<div class="announcement-banner" id="announcementBanner" role="alert">
+  <p>Debido a la alta demanda, estamos seleccionando los primeros clientes. Contacta con la persona que te habló de nosotros para concertar una reunión de valoración inicial y entrar en la lista de espera.</p>
+  <button class="announcement-close" aria-label="Cerrar aviso" id="closeBanner">&times;</button>
+</div>
+
 <a href="../diagnostico/" class="sticky-cta">Solicitar diagnóstico operativo</a>
 
 <main>
@@ -103,5 +127,7 @@
     <span>mbyte.pro</span>
   </nav>
 </footer>
+
+<script src="../js/main.js?v=20260605-nav"></script>
 </body>
 </html>
