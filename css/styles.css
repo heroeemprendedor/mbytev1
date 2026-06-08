@@ -431,3 +431,31 @@ body{
   .cta-end{padding:4rem 1.25rem}
   .price-card.featured::before{font-size:.6rem;top:-10px}
 }
+
+/* Toast / popup de confirmación */
+.toast-overlay {
+  position:fixed;inset:0;background:rgba(10,10,10,.55);
+  display:flex;align-items:center;justify-content:center;
+  z-index:1000;padding:1.5rem;
+}
+.toast-overlay[hidden]{display:none}
+.toast {
+  background:var(--white);border-radius:16px;padding:2.5rem 2rem 2rem;
+  max-width:460px;width:100%;text-align:center;
+  box-shadow:var(--shadow-lg);
+}
+.toast-icon {
+  width:56px;height:56px;border-radius:50%;background:var(--green);
+  color:var(--white);font-size:1.5rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;
+}
+.toast-title {
+  font-size:1.25rem;font-weight:700;margin-bottom:.75rem;
+  color:var(--black);
+}
+.toast-body {
+  font-size:.95rem;color:var(--gray-3);line-height:1.65;
+  margin-bottom:1.75rem;
+}
+.toast .btn {width:100%}

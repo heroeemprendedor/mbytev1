@@ -243,7 +243,7 @@
           <p>El importe final depende del tamaño de la empresa, número de áreas a revisar, sistemas existentes y complejidad de la operación.</p>
         </div>
       </div>
-      <form class="form-shell" action="mailto:asistente@mbyte.pro" method="post" enctype="text/plain">
+      <form class="form-shell" id="diagnostico-form">
         <div class="field-grid">
           <div class="field">
             <label for="nombre">Nombre</label>
@@ -280,9 +280,61 @@
             <textarea id="problema" name="Problema" required placeholder="Puedes contarnos en unas líneas qué os está costando más: seguimiento de pedidos, coordinación interna, dependencia de personas, falta de visibilidad, errores repetidos..."></textarea>
           </div>
         </div>
-        <button class="btn btn-primary" type="submit">Enviar solicitud</button>
-        <p class="form-note" style="margin-top:1rem">El formulario abre tu cliente de correo para enviar la solicitud a mByte. Respondemos en menos de 48 horas.</p>
+        <button class="btn btn-primary" type="submit" id="form-submit-btn">Enviar solicitud</button>
+        <p class="form-note" style="margin-top:1rem">Al enviar, tus datos se registran directamente en nuestro sistema. Te responderemos en menos de 48 horas.</p>
       </form>
+
+      <!-- Success toast -->
+      <div class="toast-overlay" id="toast-overlay" hidden>
+        <div class="toast">
+          <div class="toast-icon">&#10003;</div>
+          <h2 class="toast-title">Solicitud recibida</h2>
+          <p class="toast-body">Gracias. Hemos registrado tu solicitud correctamente. Analizaremos tu mensaje y te contactaremos en menos de 48 horas.</p>
+          <button class="btn btn-primary" onclick="document.getElementById('toast-overlay').hidden=true">Entendido</button>
+        </div>
+      </div>
+
+      <script>
+        const API_URL = 'https://bscjxyjrqdnhspnvopig.supabase.co/functions/v1/crm-lead-form';
+
+        document.getElementById('diagnostico-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btn = document.getElementById('form-submit-btn');
+          btn.disabled = true;
+          btn.textContent = 'Enviando…';
+
+          const payload = {
+            nombre: document.getElementById('nombre').value.trim(),
+            empresa: document.getElementById('empresa').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            telefono: document.getElementById('telefono').value.trim(),
+            sector: document.getElementById('sector').value,
+            personas: document.getElementById('personas').value.trim(),
+            problema: document.getElementById('problema').value.trim(),
+          };
+
+          try {
+            const res = await fetch(API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+
+            if (res.ok) {
+              document.getElementById('toast-overlay').hidden = false;
+              document.getElementById('diagnostico-form').reset();
+            } else {
+              const err = await res.json().catch(() => ({}));
+              alert(err.error || 'Error al enviar. Inténtalo de nuevo o escríbenos a asistente@mbyte.pro.');
+            }
+          } catch (err) {
+            alert('No se pudo conectar. Inténtalo de nuevo o escríbenos a asistente@mbyte.pro.');
+          } finally {
+            btn.disabled = false;
+            btn.textContent = 'Enviar solicitud';
+          }
+        });
+      </script>
     </div>
   </section>
 
