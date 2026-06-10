@@ -62,9 +62,9 @@
   /* ── INTRO PRESENTATION MODAL ── */
   var introModal = document.getElementById('introModal');
   var introPlayButton = document.getElementById('introPlayButton');
-  var introFrame = document.getElementById('introPresentationFrame');
+  var introVideo = document.getElementById('introPresentationVideo');
 
-  if (introModal && introFrame) {
+  if (introModal && introVideo) {
     var closeTriggers = introModal.querySelectorAll('[data-intro-close]');
 
     function openIntroModal() {
@@ -78,9 +78,7 @@
       introModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       try { sessionStorage.setItem('mbyte_intro_closed', '1'); } catch(e){}
-      if (introFrame.contentWindow) {
-        introFrame.contentWindow.postMessage({ type: 'mbyte:presentation-pause' }, window.location.origin);
-      }
+      introVideo.pause();
     }
 
     closeTriggers.forEach(function(trigger){
@@ -89,9 +87,7 @@
 
     if (introPlayButton) {
       introPlayButton.addEventListener('click', function(){
-        if (introFrame.contentWindow) {
-          introFrame.contentWindow.postMessage({ type: 'mbyte:presentation-play' }, window.location.origin);
-        }
+        introVideo.play();
       });
     }
 
