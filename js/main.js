@@ -59,4 +59,55 @@
     } catch(e){}
   }
 
+  /* ── INTRO PRESENTATION MODAL ── */
+  var introModal = document.getElementById('introModal');
+  var introPlayButton = document.getElementById('introPlayButton');
+  var introFrame = document.getElementById('introPresentationFrame');
+
+  if (introModal && introFrame) {
+    var closeTriggers = introModal.querySelectorAll('[data-intro-close]');
+
+    function openIntroModal() {
+      introModal.classList.add('open');
+      introModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeIntroModal() {
+      introModal.classList.remove('open');
+      introModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      try { sessionStorage.setItem('mbyte_intro_closed', '1'); } catch(e){}
+      if (introFrame.contentWindow) {
+        introFrame.contentWindow.postMessage({ type: 'mbyte:presentation-pause' }, window.location.origin);
+      }
+    }
+
+    closeTriggers.forEach(function(trigger){
+      trigger.addEventListener('click', closeIntroModal);
+    });
+
+    if (introPlayButton) {
+      introPlayButton.addEventListener('click', function(){
+        if (introFrame.contentWindow) {
+          introFrame.contentWindow.postMessage({ type: 'mbyte:presentation-play' }, window.location.origin);
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && introModal.classList.contains('open')) {
+        closeIntroModal();
+      }
+    });
+
+    try {
+      if (!sessionStorage.getItem('mbyte_intro_closed')) {
+        window.setTimeout(openIntroModal, 900);
+      }
+    } catch(e) {
+      window.setTimeout(openIntroModal, 900);
+    }
+  }
+
 })();

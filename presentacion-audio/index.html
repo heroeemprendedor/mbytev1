@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>mByte — Presentación con audio</title>
+<meta name="description" content="Presentación audiovisual de mByte con audio, identidad visual y estilo de marca.">
+<link rel="icon" type="image/png" href="../assets/mbyte-logo-real.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="stage-shell">
+  <section class="stage" aria-label="Presentación audiovisual mByte">
+    <div class="brand-bar">
+      <a href="../" class="brand" aria-label="mByte">
+        <img src="../assets/mbyte-logo-tagline.svg" alt="mByte Oficina Central">
+      </a>
+      <span class="runtime" id="runtime">00:00 / 01:59</span>
+    </div>
+
+    <div class="slide-frame" id="slideFrame">
+      <article class="slide active" data-start="0">
+        <span class="kicker">mByte · Oficina Central</span>
+        <h1>Tu empresa funciona. Ahora necesita sistema.</h1>
+        <p>Procesos, automatización y agentes IA para operar con más control y menos dependencia diaria.</p>
+        <div class="signal-grid" aria-hidden="true">
+          <span>Control</span><span>Procesos</span><span>Automatización</span><span>Datos</span>
+        </div>
+      </article>
+
+      <article class="slide" data-start="16">
+        <span class="kicker">El problema</span>
+        <h2>Cuando todo pasa por ti, crecer empieza a pesar.</h2>
+        <p>WhatsApp, Excel, correos, urgencias y decisiones repartidas en demasiados sitios. El negocio avanza, pero el control se vuelve frágil.</p>
+      </article>
+
+      <article class="slide" data-start="32">
+        <span class="kicker">La diferencia</span>
+        <h2>No añadimos más ruido. Ordenamos la operación.</h2>
+        <p>Cada flujo importante queda definido: qué entra, quién responde, qué se automatiza y cuándo debe intervenir una persona.</p>
+      </article>
+
+      <article class="slide dark" data-start="49">
+        <span class="kicker">Sistema operativo</span>
+        <h2>mByte no es una herramienta aislada.</h2>
+        <p>Es una capa de gestión para que clientes, tareas, documentos, datos y decisiones vivan en un mismo entorno operativo.</p>
+      </article>
+
+      <article class="slide" data-start="66">
+        <span class="kicker">Agentes IA</span>
+        <h2>Agentes concretos para tareas concretas.</h2>
+        <p>Clasifican, preparan, resumen, avisan y ejecutan dentro de límites claros. La supervisión humana sigue donde debe estar.</p>
+      </article>
+
+      <article class="slide split" data-start="84">
+        <span class="kicker">Método</span>
+        <h2>Diagnosticar. Implantar. Mejorar.</h2>
+        <ul>
+          <li>Primero entendemos cómo trabaja la empresa de verdad.</li>
+          <li>Después ordenamos procesos, datos y responsabilidades.</li>
+          <li>Solo entonces automatizamos lo repetitivo.</li>
+        </ul>
+      </article>
+
+      <article class="slide dark" data-start="101">
+        <span class="kicker">Resultado</span>
+        <h2>Más empresa. Menos dependencia de memoria, urgencia y supervisión constante.</h2>
+        <p>El equipo ejecuta con reglas claras. La dirección decide con información. El sistema absorbe lo repetitivo.</p>
+      </article>
+
+      <article class="slide final" data-start="113">
+        <span class="kicker">mbyte.pro</span>
+        <h2>Un sistema operativo para empresas reales.</h2>
+        <p>Procesos claros, datos accesibles y automatización útil para que la operación funcione con orden.</p>
+        <a href="../diagnostico/" class="cta">Diagnóstico operativo</a>
+      </article>
+    </div>
+
+    <div class="controls">
+      <button type="button" id="playButton" class="play-button" aria-label="Reproducir presentación">
+        <span id="playIcon">▶</span>
+      </button>
+      <div class="timeline" aria-hidden="true">
+        <span id="progress"></span>
+      </div>
+      <audio id="audio" preload="metadata" src="assets/audio-presentacion-mbyte.mp3"></audio>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

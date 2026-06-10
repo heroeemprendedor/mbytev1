@@ -6,7 +6,7 @@
 <title>mByte — Tu empresa funciona. Ahora necesita sistema.</title>
 <meta name="description" content="mByte implanta sistemas de gestión y automatización para empresas que han crecido más rápido que su estructura. Menos estrés, más control, instrucciones que se cumplen.">
 <link rel="icon" type="image/png" href="assets/mbyte-logo-real.png">
-<link rel="stylesheet" href="css/styles.css?v=20260605-nav">
+<link rel="stylesheet" href="css/styles.css?v=20260610-intro">
 </head>
 <body>
 
@@ -52,6 +52,26 @@
 
 <!-- ═══ CTA FLOTANTE ═══ -->
 <a href="diagnostico/" class="sticky-cta" aria-label="Solicitar diagnóstico operativo">Solicitar diagnóstico operativo</a>
+
+<!-- ═══ PRESENTACIÓN AUDIOVISUAL ═══ -->
+<div class="intro-modal" id="introModal" aria-hidden="true">
+  <div class="intro-modal__backdrop" data-intro-close></div>
+  <section class="intro-modal__panel" role="dialog" aria-modal="true" aria-labelledby="introModalTitle">
+    <button class="intro-modal__close" type="button" aria-label="Cerrar presentación" data-intro-close>&times;</button>
+    <div class="intro-modal__copy">
+      <span class="section-label">Presentación mByte</span>
+      <h2 id="introModalTitle">Escucha la visión operativa en 2 minutos.</h2>
+      <p>Una pieza breve para entender qué cambia cuando la empresa deja de depender de memoria, urgencias y supervisión constante.</p>
+      <div class="intro-modal__actions">
+        <button class="btn btn-primary" type="button" id="introPlayButton">Reproducir presentación</button>
+        <a class="btn btn-secondary" href="presentacion-audio/">Abrir en página completa</a>
+      </div>
+    </div>
+    <div class="intro-modal__media">
+      <iframe id="introPresentationFrame" title="Presentación audiovisual mByte" src="presentacion-audio/" loading="lazy" allow="autoplay"></iframe>
+    </div>
+  </section>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
@@ -237,6 +257,6 @@
   </nav>
 </footer>
 
-<script src="js/main.js?v=20260605-nav"></script>
+<script src="js/main.js?v=20260610-intro"></script>
 </body>
 </html>

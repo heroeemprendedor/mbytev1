@@ -401,6 +401,68 @@ body{
 }
 .announcement-close:hover{opacity:1}
 
+/* ── INTRO MODAL ── */
+.intro-modal{
+  position:fixed;inset:0;z-index:500;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.intro-modal.open{opacity:1;pointer-events:auto}
+.intro-modal__backdrop{
+  position:absolute;inset:0;
+  background:rgba(10,10,10,.84);
+  backdrop-filter:blur(14px);
+}
+.intro-modal__panel{
+  position:relative;z-index:1;
+  width:min(1180px,100%);
+  max-height:min(760px,calc(100vh - 3rem));
+  display:grid;grid-template-columns:360px minmax(0,1fr);
+  background:var(--white);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 28px 90px rgba(0,0,0,.32);
+  border:1px solid rgba(255,255,255,.28);
+}
+.intro-modal__close{
+  position:absolute;top:.85rem;right:.9rem;z-index:2;
+  width:36px;height:36px;border:0;border-radius:50%;
+  background:rgba(10,10,10,.08);color:var(--black);
+  font-size:1.45rem;line-height:1;cursor:pointer;
+  transition:background .15s,transform .15s;
+}
+.intro-modal__close:hover{background:rgba(10,10,10,.14);transform:scale(1.04)}
+.intro-modal__copy{
+  padding:clamp(1.75rem,3vw,2.75rem);
+  display:flex;flex-direction:column;justify-content:center;
+  background:linear-gradient(175deg,#f0f4ff 0%,#ffffff 62%);
+}
+.intro-modal__copy h2{
+  font-size:clamp(1.7rem,3.4vw,2.7rem);
+  line-height:1.08;font-weight:800;margin:.95rem 0 .9rem;
+  letter-spacing:0;
+}
+.intro-modal__copy p{
+  color:var(--gray-3);
+  font-size:1rem;line-height:1.7;
+  max-width:520px;
+}
+.intro-modal__actions{
+  display:flex;gap:.75rem;flex-wrap:wrap;
+  margin-top:1.65rem;
+}
+.intro-modal__media{
+  min-height:560px;
+  background:var(--black);
+  border-left:1px solid var(--gray-2);
+}
+.intro-modal__media iframe{
+  width:100%;height:100%;min-height:560px;
+  border:0;display:block;background:var(--white);
+}
+
 @media(max-width:900px){
   .hamburger{display:flex}
   .card-grid-3,.card-grid-4,.card-grid-5{grid-template-columns:repeat(2,1fr)}
@@ -414,6 +476,13 @@ body{
   .page-hero .section-wrap,.two-col{grid-template-columns:1fr}
   .pricing-grid{grid-template-columns:1fr}
   .feature-row,.feature-row-4{grid-template-columns:repeat(2,1fr)}
+  .intro-modal{padding:1rem}
+  .intro-modal__panel{
+    grid-template-columns:1fr;
+    overflow:auto;
+  }
+  .intro-modal__copy{padding:2rem 1.25rem 1.25rem}
+  .intro-modal__media,.intro-modal__media iframe{min-height:520px}
 }
 @media(max-width:560px){
   .sticky-cta{left:1rem;right:1rem;text-align:center;bottom:1rem;font-size:.8125rem;padding:.75rem 1rem}
@@ -430,6 +499,14 @@ body{
   .field-grid{grid-template-columns:1fr}
   .cta-end{padding:4rem 1.25rem}
   .price-card.featured::before{font-size:.6rem;top:-10px}
+  .intro-modal{padding:0}
+  .intro-modal__panel{
+    width:100%;height:100%;max-height:none;
+    border-radius:0;
+  }
+  .intro-modal__close{top:.6rem;right:.6rem}
+  .intro-modal__actions .btn{width:100%;justify-content:center;padding:.75rem 1rem}
+  .intro-modal__media,.intro-modal__media iframe{min-height:58vh}
 }
 
 /* Toast / popup de confirmación */
