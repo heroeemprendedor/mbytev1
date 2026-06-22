@@ -134,6 +134,35 @@ body{
 .marker-bad{background:var(--red-bg);color:var(--red)}
 .marker-good{background:var(--green-bg);color:var(--green)}
 
+/* ── ECOSYSTEM ── */
+.ecosystem{background:var(--gray-1)}
+.ecosystem-head{max-width:880px}
+.ecosystem-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;margin-top:2.5rem;
+  background:var(--gray-2);border:1px solid var(--gray-2);
+  border-radius:var(--radius);overflow:hidden;
+}
+.ecosystem-card{background:var(--white);padding:1.4rem;min-height:148px}
+.ecosystem-card span{
+  display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--blue);margin-bottom:.65rem;
+  font-family:'JetBrains Mono',monospace;
+}
+.ecosystem-card p{font-size:.93rem;line-height:1.6;color:var(--gray-3)}
+.autonomy-panel{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:start;
+  margin-top:2rem;padding:2rem;border-radius:var(--radius);
+  background:var(--black);color:var(--white);
+}
+.autonomy-panel h3{font-size:clamp(1.25rem,2.4vw,1.75rem);line-height:1.18;margin-bottom:1rem;max-width:760px}
+.autonomy-panel p{color:#c8c8c8;line-height:1.7}
+.autonomy-list{display:grid;gap:.65rem}
+.autonomy-list span{
+  display:block;border:1px solid #2a2a2a;background:rgba(255,255,255,.05);
+  padding:.8rem 1rem;border-radius:var(--radius-sm);font-size:.92rem;color:#e8e8e8;
+}
+
 /* ── CARDS ── */
 .card-grid{display:grid;gap:1.25rem}
 .card-grid-3{grid-template-columns:repeat(3,1fr)}
@@ -472,6 +501,8 @@ body{
   .method-step:first-child{border-top:none}
   .panel{grid-template-columns:1fr}
   .case-grid{grid-template-columns:1fr}
+  .ecosystem-grid{grid-template-columns:repeat(2,1fr)}
+  .autonomy-panel{grid-template-columns:1fr}
   .header-nav{display:none}
   .header-cta{display:none}
   .page-hero .section-wrap,.two-col{grid-template-columns:1fr}
@@ -490,6 +521,9 @@ body{
   .site-header{height:64px;padding:0 1rem}
   .site-header .logo-img--tagline{width:200px;max-width:calc(100vw - 2rem)}
   .card-grid-3,.card-grid-4,.card-grid-5{grid-template-columns:1fr}
+  .ecosystem-grid{grid-template-columns:1fr}
+  .ecosystem-card{min-height:auto}
+  .autonomy-panel{padding:1.5rem}
   .hero{padding:3.5rem 1.25rem 3rem}
   .hero h1{font-size:1.85rem}
   .section{padding:3.5rem 1.25rem}
