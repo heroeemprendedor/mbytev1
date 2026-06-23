@@ -433,21 +433,32 @@ body{
 /* ── INTRO MODAL ── */
 .intro-modal{
   position:fixed;inset:0;z-index:500;
-  display:flex;align-items:center;justify-content:center;
-  padding:1.5rem;
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:clamp(1rem,3vh,2rem) 1.5rem 5.5rem;
   opacity:0;pointer-events:none;
   transition:opacity .25s ease;
 }
 .intro-modal.open{opacity:1;pointer-events:auto}
 .intro-modal__backdrop{
   position:absolute;inset:0;
-  background:rgba(10,10,10,.84);
-  backdrop-filter:blur(14px);
+  background:rgba(10,10,10,.66);
+  backdrop-filter:blur(8px);
+}
+.intro-modal::after{
+  content:"Desplaza o cierra para ver la página";
+  position:absolute;left:50%;bottom:1.45rem;z-index:1;
+  transform:translateX(-50%);
+  color:#fff;background:rgba(10,10,10,.56);
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;
+  padding:.7rem 1rem;
+  font-size:.85rem;font-weight:700;
+  box-shadow:0 10px 30px rgba(0,0,0,.22);
 }
 .intro-modal__panel{
   position:relative;z-index:1;
   width:min(1180px,100%);
-  max-height:min(760px,calc(100vh - 3rem));
+  max-height:min(720px,calc(100vh - 7rem));
   display:grid;grid-template-columns:360px minmax(0,1fr);
   background:var(--white);
   border-radius:var(--radius);
@@ -455,16 +466,30 @@ body{
   box-shadow:0 28px 90px rgba(0,0,0,.32);
   border:1px solid rgba(255,255,255,.28);
 }
+.intro-modal__topbar{
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.75rem .85rem .75rem 1rem;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(10,10,10,.08);
+  backdrop-filter:blur(10px);
+}
+.intro-modal__topbar span{
+  color:var(--gray-3);
+  font-size:.82rem;font-weight:700;
+}
 .intro-modal__close{
-  position:absolute;top:.85rem;right:.9rem;z-index:2;
-  width:36px;height:36px;border:0;border-radius:50%;
-  background:rgba(10,10,10,.08);color:var(--black);
-  font-size:1.45rem;line-height:1;cursor:pointer;
+  border:1px solid rgba(10,10,10,.14);
+  border-radius:999px;
+  background:var(--black);color:#fff;
+  font-size:.82rem;font-weight:800;line-height:1;
+  padding:.72rem 1rem;
+  cursor:pointer;
   transition:background .15s,transform .15s;
 }
-.intro-modal__close:hover{background:rgba(10,10,10,.14);transform:scale(1.04)}
+.intro-modal__close:hover{background:#333;transform:translateY(-1px)}
 .intro-modal__copy{
-  padding:clamp(1.75rem,3vw,2.75rem);
+  padding:calc(clamp(1.75rem,3vw,2.75rem) + 2.4rem) clamp(1.75rem,3vw,2.75rem) clamp(1.75rem,3vw,2.75rem);
   display:flex;flex-direction:column;justify-content:center;
   background:linear-gradient(175deg,#f0f4ff 0%,#ffffff 62%);
 }
@@ -512,9 +537,10 @@ body{
   .intro-modal__panel{
     grid-template-columns:1fr;
     overflow:auto;
+    max-height:calc(100vh - 5rem);
   }
-  .intro-modal__copy{padding:2rem 1.25rem 1.25rem}
-  .intro-modal__media,.intro-modal__media video{min-height:520px}
+  .intro-modal__copy{padding:5rem 1.25rem 1.25rem}
+  .intro-modal__media,.intro-modal__media video{min-height:420px}
 }
 @media(max-width:560px){
   .sticky-cta{left:1rem;right:1rem;text-align:center;bottom:1rem;font-size:.8125rem;padding:.75rem 1rem}
@@ -534,14 +560,17 @@ body{
   .field-grid{grid-template-columns:1fr}
   .cta-end{padding:4rem 1.25rem}
   .price-card.featured::before{font-size:.6rem;top:-10px}
-  .intro-modal{padding:0}
+  .intro-modal{padding:.75rem .75rem 4.6rem}
+  .intro-modal::after{bottom:.85rem;width:calc(100% - 2rem);text-align:center}
   .intro-modal__panel{
-    width:100%;height:100%;max-height:none;
-    border-radius:0;
+    width:100%;max-height:calc(100vh - 5.5rem);
+    border-radius:12px;
   }
-  .intro-modal__close{top:.6rem;right:.6rem}
+  .intro-modal__topbar{position:sticky;padding:.65rem .7rem}
+  .intro-modal__topbar span{font-size:.74rem}
+  .intro-modal__close{font-size:.76rem;padding:.65rem .75rem;white-space:nowrap}
   .intro-modal__actions .btn{width:100%;justify-content:center;padding:.75rem 1rem}
-  .intro-modal__media,.intro-modal__media video{min-height:58vh}
+  .intro-modal__media,.intro-modal__media video{min-height:44vh}
 }
 
 /* Toast / popup de confirmación */

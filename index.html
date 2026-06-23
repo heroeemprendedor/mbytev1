@@ -6,7 +6,7 @@
 <title>mByte — El sistema operativo de tu negocio.</title>
 <meta name="description" content="mByte es el sistema operativo de tu negocio: tu día a día funcionando solo y bajo control. Automatizamos y operamos tu negocio con IA, supervisado por personas. Tú ganas tiempo; nosotros respondemos de que funcione.">
 <link rel="icon" type="image/png" href="assets/mbyte-logo-real.png">
-<link rel="stylesheet" href="css/styles.css?v=20260622-sistema-propio">
+<link rel="stylesheet" href="css/styles.css?v=20260623-intro-visible">
 </head>
 <body>
 
@@ -59,7 +59,10 @@
 <div class="intro-modal" id="introModal" aria-hidden="true">
   <div class="intro-modal__backdrop" data-intro-close></div>
   <section class="intro-modal__panel" role="dialog" aria-modal="true" aria-labelledby="introModalTitle">
-    <button class="intro-modal__close" type="button" aria-label="Cerrar presentación" data-intro-close>&times;</button>
+    <div class="intro-modal__topbar">
+      <span>La web de mByte continúa debajo</span>
+      <button class="intro-modal__close" type="button" aria-label="Cerrar presentación" data-intro-close>Ver la página</button>
+    </div>
     <div class="intro-modal__copy">
       <span class="section-label">Presentación mByte</span>
       <h2 id="introModalTitle">Escucha la visión operativa en 2 minutos.</h2>
@@ -67,6 +70,7 @@
       <div class="intro-modal__actions">
         <button class="btn btn-primary" type="button" id="introPlayButton">Reproducir presentación</button>
         <a class="btn btn-secondary" href="presentacion-audio/">Abrir en página completa</a>
+        <button class="btn btn-secondary" type="button" data-intro-close>Seguir viendo la web</button>
       </div>
     </div>
     <div class="intro-modal__media">
