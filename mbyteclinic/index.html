@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>mByte Clinic — Gestión conectada para clínicas</title>
+<meta name="description" content="mByte Clinic conecta agenda, pacientes, presupuestos, facturación, equipo, marketing y dirección para que tu clínica gane control, seguimiento y claridad sin sustituir tus herramientas actuales.">
+<link rel="icon" type="image/png" href="../assets/mbyte-logo-real.png">
+<link rel="stylesheet" href="../css/styles.css?v=20260701-mbyteclinic">
+<style>
+  .clinic-hero{padding:5.5rem 2rem 4.5rem;border-bottom:1px solid var(--gray-2);background:linear-gradient(175deg,#f0f4ff 0%,#ffffff 58%,#f7f8fa 100%)}
+  .clinic-hero .section-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+  .clinic-hero h1{font-size:clamp(2.2rem,5.2vw,4rem);font-weight:800;line-height:1.06;letter-spacing:0;margin:1.1rem 0 1.35rem;max-width:880px;background:linear-gradient(135deg,var(--black) 58%,var(--blue-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .clinic-hero p{color:#3e4652;font-size:1.12rem;line-height:1.72;max-width:760px}
+  .clinic-hero p + p{margin-top:1rem}
+  .clinic-dashboard{border:1.5px solid var(--gray-2);border-radius:var(--radius);background:var(--white);box-shadow:var(--shadow-lg);overflow:hidden}
+  .clinic-dashboard__head{padding:1.25rem 1.4rem;background:var(--black);color:var(--white)}
+  .clinic-dashboard__head h2{font-size:1rem;margin-bottom:.35rem}
+  .clinic-dashboard__head p{font-size:.86rem;color:#cfcfcf;line-height:1.55}
+  .clinic-dashboard__grid{display:grid;gap:1px;background:var(--gray-2)}
+  .clinic-signal{display:grid;grid-template-columns:42px 1fr;gap:.85rem;align-items:start;background:var(--white);padding:1rem 1.15rem}
+  .clinic-signal span{width:42px;height:42px;border-radius:var(--radius-sm);background:var(--blue-light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;font-family:'JetBrains Mono',monospace}
+  .clinic-signal h3{font-size:.95rem;margin-bottom:.22rem}
+  .clinic-signal p{font-size:.84rem;line-height:1.5;color:var(--gray-3);margin:0}
+  .clinic-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--gray-2);background:var(--gray-2);border-radius:var(--radius);overflow:hidden;margin-top:2rem}
+  .clinic-proof div{background:var(--white);padding:1.4rem}
+  .clinic-proof strong{display:block;font-size:.88rem;margin-bottom:.3rem}
+  .clinic-proof p{font-size:.88rem;line-height:1.6;color:var(--gray-3)}
+  .objection-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--gray-2);border:1px solid var(--gray-2);border-radius:var(--radius);overflow:hidden;margin-top:2rem}
+  .objection-item{background:var(--white);padding:1.4rem}
+  .objection-item h3{font-size:1rem;margin-bottom:.45rem}
+  .objection-item p{font-size:.92rem;line-height:1.65;color:var(--gray-3)}
+  .clinic-note{border-left:3px solid var(--blue);padding:1rem 1.2rem;background:var(--blue-light);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:#28384f;line-height:1.65}
+  @media(max-width:900px){
+    .clinic-hero .section-wrap{grid-template-columns:1fr}
+    .clinic-proof,.objection-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .clinic-hero{padding:3.5rem 1.25rem 3rem}
+    .clinic-hero h1{font-size:1.9rem}
+    .clinic-signal{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="../" class="logo-link" aria-label="mByte">
+    <img src="../assets/mbyte-logo-tagline.svg" alt="mByte Oficina Central" class="logo-img logo-img--tagline" />
+  </a>
+  <nav>
+    <ul class="header-nav">
+      <li><a href="../metodo/">Método</a></li>
+      <li><a href="../sectores/">Sectores</a></li>
+      <li><a href="../diagnostico/">Diagnóstico</a></li>
+      <li><a href="../planes/">Planes</a></li>
+      <li><a href="../faq/">FAQ</a></li>
+    </ul>
+  </nav>
+  <a href="#demo" class="header-cta">Solicitar demo</a>
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-nav-overlay" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <nav>
+      <a href="../metodo/">Método</a>
+      <a href="../sectores/">Sectores</a>
+      <a href="../diagnostico/">Diagnóstico</a>
+      <a href="../planes/">Planes</a>
+      <a href="../faq/">FAQ</a>
+      <a href="#demo" class="mobile-nav-cta">Solicitar demo</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <section class="clinic-hero">
+    <div class="section-wrap">
+      <div>
+        <span class="section-label">Gestión conectada para clínicas</span>
+        <h1>Más control para gestionar y hacer crecer tu clínica.</h1>
+        <p><strong>mByte Clinic</strong> conecta los procesos operativos, administrativos y comerciales de clínicas privadas y centros sanitarios en una única visión de gestión.</p>
+        <p>Organiza la agenda, el seguimiento de pacientes, los presupuestos, la facturación, la información contable, la coordinación del equipo y las acciones de marketing para reducir tareas manuales y facilitar decisiones más claras.</p>
+        <p>Se adapta a la forma de trabajo de cada centro y complementa las herramientas que ya utiliza, manteniendo siempre la supervisión del equipo.</p>
+        <div class="hero-actions" style="justify-content:flex-start;margin-top:2rem">
+          <a href="#saber-mas" class="btn btn-secondary">Saber más</a>
+          <a href="#demo" class="btn btn-primary">Solicitar una demo</a>
+        </div>
+      </div>
+      <aside class="clinic-dashboard" aria-label="Áreas conectadas por mByte Clinic">
+        <div class="clinic-dashboard__head">
+          <h2>Una visión completa de tu centro</h2>
+          <p>Áreas que normalmente viven separadas, reunidas en una gestión diaria más clara.</p>
+        </div>
+        <div class="clinic-dashboard__grid">
+          <div class="clinic-signal"><span>01</span><div><h3>Agenda y pacientes</h3><p>Citas, confirmaciones, revisiones y seguimiento.</p></div></div>
+          <div class="clinic-signal"><span>02</span><div><h3>Presupuestos y servicios</h3><p>Propuestas, aceptación, financiación y continuidad del paciente.</p></div></div>
+          <div class="clinic-signal"><span>03</span><div><h3>Facturación y administración</h3><p>Facturas, documentación e información organizada.</p></div></div>
+          <div class="clinic-signal"><span>04</span><div><h3>Contabilidad</h3><p>Datos preparados para dirección y asesoría.</p></div></div>
+          <div class="clinic-signal"><span>05</span><div><h3>Marketing y crecimiento</h3><p>Captación, seguimiento, reactivación y reputación.</p></div></div>
+          <div class="clinic-signal"><span>06</span><div><h3>Dirección y rentabilidad</h3><p>Producción, rendimiento y oportunidades de mejora.</p></div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="content-band" id="saber-mas">
+    <div class="section-wrap two-col">
+      <div>
+        <span class="section-label">Todo conectado</span>
+        <h2 class="section-title">Tu clínica no necesita más herramientas. Necesita que trabajen juntas.</h2>
+        <p class="section-intro">Ya utilizas agenda, software clínico, WhatsApp, correo, documentos, presupuestos, facturación y herramientas administrativas. El problema no suele ser que falte otro programa. El problema es que la información queda repartida y el equipo tiene que unirla a mano.</p>
+        <p class="section-intro" style="margin-top:1rem">mByte Clinic conecta esa información para que tu equipo pueda atender mejor, coordinar tareas, dar seguimiento a cada paciente y mantener bajo control la actividad diaria.</p>
+      </div>
+      <div class="panel-row">
+        <div class="panel-item"><span class="marker marker-good">✓</span> Conecta agenda, comunicación, documentación, facturación y gestión administrativa.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Mantiene visibles citas, revisiones, presupuestos, tratamientos y próximos pasos.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Organiza tareas, responsables, incidencias y acciones pendientes.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Relaciona consultas, campañas, seguimiento, reactivación y reputación.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Reúne información sobre actividad, facturación, rendimiento y oportunidades de mejora.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Tu equipo conserva la supervisión sobre información sensible, comunicaciones y decisiones clínicas.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-band content-band--gray">
+    <div class="section-wrap">
+      <span class="section-label">Qué conecta</span>
+      <h2 class="section-title">De la primera consulta a la revisión, con visibilidad para recepción, administración y dirección.</h2>
+      <div class="card-grid card-grid-4" style="margin-top:2rem">
+        <div class="sys-card"><div class="tag">Agenda</div><h3>Citas y revisiones</h3><p>Confirmaciones, cambios, ausencias, huecos libres, urgencias y revisiones que no deberían perderse.</p></div>
+        <div class="sys-card"><div class="tag">Paciente</div><h3>Seguimiento continuo</h3><p>Próximos pasos, documentación pendiente, preferencias operativas y comunicaciones importantes.</p></div>
+        <div class="sys-card"><div class="tag">Presupuesto</div><h3>Propuesta y aceptación</h3><p>Presupuestos enviados, pendientes, aceptados, rechazados, financiados o sin seguimiento.</p></div>
+        <div class="sys-card"><div class="tag">Equipo</div><h3>Tareas y responsables</h3><p>Recepción, doctores, administración, dirección y marketing trabajando con prioridades visibles.</p></div>
+        <div class="sys-card"><div class="tag">Facturación</div><h3>Administración ordenada</h3><p>Facturas, cobros, documentación asociada, estados administrativos y preparación de información.</p></div>
+        <div class="sys-card"><div class="tag">Contabilidad</div><h3>Datos para decidir</h3><p>Información preparada para dirección y asesoría sin reconstruirla desde correos y hojas sueltas.</p></div>
+        <div class="sys-card"><div class="tag">Marketing</div><h3>Captación y reactivación</h3><p>Consultas, campañas, pacientes inactivos, reputación, reseñas y oportunidades comerciales.</p></div>
+        <div class="sys-card"><div class="tag">Dirección</div><h3>Rentabilidad y control</h3><p>Actividad, rendimiento, tratamientos, presupuestos y puntos de mejora en una visión ejecutiva.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-band">
+    <div class="section-wrap two-col">
+      <div>
+        <span class="section-label">Qué gana tu clínica</span>
+        <h2 class="section-title">Más coordinación, menos trabajo manual y mayor claridad para decidir.</h2>
+        <p class="section-intro">mByte Clinic automatiza acciones repetitivas, organiza lo que requiere atención y reúne la información que necesitas para gestionar, decidir y hacer crecer tu clínica sin sustituir los sistemas que ya utilizas.</p>
+      </div>
+      <div class="process-list">
+        <div class="process-item"><span>01</span><div><h3>El equipo sabe qué toca hacer</h3><p>Menos dependencia de notas sueltas, memoria individual o conversaciones perdidas.</p></div></div>
+        <div class="process-item"><span>02</span><div><h3>El paciente no se queda sin seguimiento</h3><p>Revisiones, presupuestos, documentación, llamadas y próximos pasos quedan visibles.</p></div></div>
+        <div class="process-item"><span>03</span><div><h3>Dirección ve la clínica con más claridad</h3><p>Actividad, facturación, rendimiento, marketing y oportunidades de mejora dejan de estar dispersas.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case">
+    <div class="section-wrap case-grid">
+      <div>
+        <span class="section-label">Validación real</span>
+        <h2>mByte Clinic ya se está implantando en una clínica real.</h2>
+        <p>Clínica Juber es una implantación de mByte Clinic: un entorno real donde estamos conectando agenda, pacientes, documentación, equipo, administración y seguimiento diario.</p>
+        <p>Esta experiencia nos permite validar qué necesita una clínica para trabajar con más orden, coordinación y visibilidad, y convertir ese aprendizaje en una solución adaptable a otras especialidades.</p>
+        <p class="case-quote">No construimos desde una presentación ideal. Ajustamos la solución desde el trabajo diario de una clínica en funcionamiento.</p>
+      </div>
+      <div class="case-list">
+        <span>Una clínica real, con necesidades reales.</span>
+        <span>Probamos lo que realmente funciona en operación diaria.</span>
+        <span>Convertimos el aprendizaje en una base preparada para crecer.</span>
+        <span>Adaptamos la solución sin obligar a cambiarlo todo desde el primer día.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-band">
+    <div class="section-wrap two-col">
+      <div>
+        <span class="section-label">Por qué mByte</span>
+        <h2 class="section-title">No partimos de cero en cada clínica.</h2>
+        <p class="section-intro">Cada implantación mejora una base operativa común: procesos, criterios, controles, aprendizajes y formas de conectar herramientas que se van consolidando con uso real.</p>
+        <p class="section-intro" style="margin-top:1rem">Tu clínica mantiene sus datos aislados y su forma de trabajar. Lo que crece con mByte es el conocimiento operativo: cómo ordenar agendas, pacientes, equipos, administración y seguimiento sin perder supervisión humana.</p>
+      </div>
+      <div class="panel-row">
+        <div class="panel-item"><span class="marker marker-good">✓</span> Una base especializada en clínicas, no una plantilla genérica.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Aprendizaje acumulado a partir de implantaciones reales.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Equipo humano supervisando la implantación, los límites y la continuidad.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Control profesional sobre comunicaciones, datos sensibles y decisiones clínicas.</div>
+        <div class="panel-item"><span class="marker marker-good">✓</span> Implantación por fases, empezando por los procesos con más impacto.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-band content-band--gray">
+    <div class="section-wrap">
+      <span class="section-label">Objeciones habituales</span>
+      <h2 class="section-title">Preguntas que una clínica debería hacerse antes de implantar un sistema así.</h2>
+      <p class="section-intro">Preferimos anticiparlas. mByte Clinic está pensado para centros que necesitan más control, pero no quieren perder su forma de trabajar ni exponer información sensible.</p>
+      <div class="objection-grid">
+        <div class="objection-item"><h3>“Ya tenemos software clínico.”</h3><p>No buscamos sustituirlo de entrada. mByte Clinic actúa como una capa de gestión conectada alrededor de las herramientas que ya usas.</p></div>
+        <div class="objection-item"><h3>“No queremos cambiarlo todo.”</h3><p>La implantación se hace por fases. Primero se conectan y ordenan los procesos con más impacto: agenda, seguimiento, presupuestos o administración.</p></div>
+        <div class="objection-item"><h3>“El equipo no tiene tiempo para aprender otra herramienta.”</h3><p>Precisamente por eso se empieza con flujos concretos del día a día. La solución debe reducir carga, no añadir otra pantalla inútil.</p></div>
+        <div class="objection-item"><h3>“Nos preocupa la protección de datos.”</h3><p>En clínicas, los datos sensibles requieren control estricto. Antes de operar con datos reales se definen permisos, responsabilidades, límites y tratamiento adecuado.</p></div>
+        <div class="objection-item"><h3>“No queremos automatizar mensajes delicados.”</h3><p>Las comunicaciones sensibles pueden quedar preparadas, revisadas o sugeridas, pero el equipo conserva la aprobación cuando corresponde.</p></div>
+        <div class="objection-item"><h3>“Cada especialidad funciona distinto.”</h3><p>La base común cubre agenda, pacientes, administración, equipo y dirección. Después se adapta a odontología, podología, estética, fisioterapia u otras especialidades.</p></div>
+        <div class="objection-item"><h3>“¿Qué pasa con WhatsApp, email y documentos?”</h3><p>Se incorporan al mapa operativo para que no sean canales aislados. El objetivo es que la información relevante quede registrada y accionable.</p></div>
+        <div class="objection-item"><h3>“¿Cómo se mide el retorno?”</h3><p>Se puede medir en menos tareas manuales, menos pacientes sin seguimiento, más presupuestos recuperados, mejor ocupación de agenda y más claridad de dirección.</p></div>
+        <div class="objection-item"><h3>“¿Y si el sistema se queda sin mantenimiento?”</h3><p>mByte no entrega una automatización suelta. La implantación incluye seguimiento, revisión y evolución por fases para mantener continuidad.</p></div>
+        <div class="objection-item"><h3>“¿Dependemos demasiado de mByte?”</h3><p>El sistema documenta procesos y mantiene la información organizada. El objetivo es reducir dependencia de personas y herramientas dispersas, no crear una caja negra.</p></div>
+        <div class="objection-item"><h3>“¿Puede afectar a la relación con el paciente?”</h3><p>Bien implantado, debería mejorarla: menos olvidos, más continuidad, mejor preparación de cada contacto y supervisión humana en lo que importa.</p></div>
+        <div class="objection-item"><h3>“¿Esto sirve para una clínica pequeña?”</h3><p>Sí, si la clínica tiene agenda activa, presupuestos, equipo, administración y seguimiento. La fase inicial se dimensiona al tamaño real del centro.</p></div>
+        <div class="objection-item"><h3>“¿Y si nuestra información está desordenada?”</h3><p>Es normal. La implantación empieza precisamente mapeando dónde vive la información y qué debe ordenarse primero.</p></div>
+        <div class="objection-item"><h3>“¿Quién decide qué se automatiza?”</h3><p>La clínica mantiene la decisión profesional. mByte propone, configura y supervisa; el centro valida límites, permisos y aprobaciones.</p></div>
+        <div class="objection-item"><h3>“¿Cuánto tarda la implantación?”</h3><p>Depende del alcance, número de sedes, herramientas actuales y procesos prioritarios. Por eso la primera fase es una demo o diagnóstico operativo.</p></div>
+        <div class="objection-item"><h3>“¿Qué diferencia hay con un CRM sanitario?”</h3><p>Un CRM suele centrarse en contactos y oportunidades. mByte Clinic conecta operación, administración, equipo, seguimiento y dirección alrededor de la clínica completa.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-band">
+    <div class="section-wrap two-col">
+      <div>
+        <span class="section-label">Flujo de implantación</span>
+        <h2 class="section-title">Una ruta clara antes de tocar la operación diaria.</h2>
+        <p class="section-intro">No empezamos instalando tecnología sin contexto. Primero entendemos cómo trabaja la clínica, qué herramientas usa, qué procesos duelen más y dónde hay que mantener control humano.</p>
+      </div>
+      <div class="process-list">
+        <div class="process-item"><span>01</span><div><h3>Demo o diagnóstico inicial</h3><p>Revisamos agenda, pacientes, canales, documentación, administración, marketing y dirección.</p></div></div>
+        <div class="process-item"><span>02</span><div><h3>Mapa operativo de la clínica</h3><p>Identificamos herramientas actuales, procesos prioritarios, límites de actuación y fases recomendadas.</p></div></div>
+        <div class="process-item"><span>03</span><div><h3>Implantación controlada</h3><p>Activamos primero los flujos con más impacto, con supervisión del equipo y revisión continua.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-band content-band--gray" id="demo">
+    <div class="section-wrap two-col">
+      <div>
+        <span class="section-label">Solicitar una demo</span>
+        <h2 class="section-title">Cuéntanos cómo gestionáis hoy la clínica.</h2>
+        <p class="section-intro">Con unas pocas respuestas podemos preparar una conversación útil: qué herramientas usáis, dónde se pierde tiempo y qué área tendría más impacto conectar primero.</p>
+        <p class="clinic-note" style="margin-top:1.5rem">mByte Clinic conecta las áreas de tu clínica, organiza el trabajo diario y convierte la información dispersa en una gestión más clara, coordinada y medible.</p>
+      </div>
+      <form class="form-shell" id="clinic-form">
+        <div class="field-grid">
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="Nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="empresa">Clínica</label>
+            <input id="empresa" name="Empresa" type="text" autocomplete="organization" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="Email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" name="Telefono" type="tel" autocomplete="tel">
+          </div>
+          <div class="field field-full">
+            <label for="personas">Tamaño aproximado del equipo</label>
+            <input id="personas" name="Personas" type="text" placeholder="Ej. 5 personas, 2 gabinetes, 1 sede">
+          </div>
+          <div class="field field-full">
+            <label for="problema">Qué os gustaría ordenar primero</label>
+            <textarea id="problema" name="Problema" required placeholder="Agenda, pacientes sin seguimiento, presupuestos, administración, WhatsApp, marketing, facturación, equipo, rentabilidad..."></textarea>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="form-submit-btn">Enviar solicitud</button>
+        <p class="form-note" style="margin-top:1rem">Al enviar, tus datos se registran directamente en nuestro sistema. Te responderemos en menos de 48 horas.</p>
+      </form>
+
+      <div class="toast-overlay" id="toast-overlay" hidden>
+        <div class="toast">
+          <div class="toast-icon">&#10003;</div>
+          <h2 class="toast-title">Solicitud recibida</h2>
+          <p class="toast-body">Gracias. Hemos registrado tu solicitud correctamente. Analizaremos tu mensaje y te contactaremos en menos de 48 horas.</p>
+          <button class="btn btn-primary" onclick="document.getElementById('toast-overlay').hidden=true">Entendido</button>
+        </div>
+      </div>
+
+      <script>
+        const API_URL = 'https://bscjxyjrqdnhspnvopig.supabase.co/functions/v1/crm-lead-form';
+
+        document.getElementById('clinic-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btn = document.getElementById('form-submit-btn');
+          btn.disabled = true;
+          btn.textContent = 'Enviando...';
+
+          const problema = document.getElementById('problema').value.trim();
+          const payload = {
+            nombre: document.getElementById('nombre').value.trim(),
+            empresa: document.getElementById('empresa').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            telefono: document.getElementById('telefono').value.trim(),
+            sector: 'Clínica / salud privada - mByte Clinic',
+            personas: document.getElementById('personas').value.trim(),
+            problema: '[mByte Clinic] ' + problema,
+          };
+
+          try {
+            const res = await fetch(API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+
+            if (res.ok) {
+              document.getElementById('toast-overlay').hidden = false;
+              document.getElementById('clinic-form').reset();
+            } else {
+              const err = await res.json().catch(() => ({}));
+              alert(err.error || 'Error al enviar. Inténtalo de nuevo o escríbenos a asistente@mbyte.pro.');
+            }
+          } catch (err) {
+            alert('No se pudo conectar. Inténtalo de nuevo o escríbenos a asistente@mbyte.pro.');
+          } finally {
+            btn.disabled = false;
+            btn.textContent = 'Enviar solicitud';
+          }
+        });
+      </script>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span>&copy; 2026 — mByte Oficina Central</span>
+  <nav class="footer-nav">
+    <a href="../metodo/">Método</a>
+    <a href="../sectores/">Sectores</a>
+    <a href="../diagnostico/">Diagnóstico</a>
+    <a href="../planes/">Planes</a>
+    <a href="../faq/">FAQ</a>
+    <span>mbyte.pro/mbyteclinic</span>
+  </nav>
+</footer>
+
+<script src="../js/main.js?v=20260701-mbyteclinic"></script>
+</body>
+</html>
